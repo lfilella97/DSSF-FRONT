@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../../../types";
+import { User, UserState } from "../../../../types";
 
-const userInitialState: User = { userName: "", isLogged: false };
+const userInitialState: UserState = { token: "", isLogged: false };
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    loginUser: (currentState: User, action: PayloadAction<User>) => ({
+    loginUser: (currentState: UserState, action: PayloadAction<User>) => ({
       ...action.payload,
       isLogged: true,
     }),
