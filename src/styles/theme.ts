@@ -29,4 +29,8 @@ export const theme: DefaultTheme = {
     secondaryMobilePadding: "20px",
     secondaryDesktopPading: "40px",
   },
+  gap: {
+    mediumClickableGap: "20px",
+    clickableGap: "40px",
+  },
 };

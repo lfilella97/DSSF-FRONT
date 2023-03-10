@@ -29,5 +29,9 @@ declare module "styled-components" {
       secondaryMobilePadding: string;
       secondaryDesktopPading: string;
     };
+    gap: {
+      clickableGap: string;
+      mediumClickableGap: string;
+    };
   }
 }

@@ -19,9 +19,8 @@ li {
 
 body {
   margin: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  font-family: "Roboto", "Basier circle", Geneva, Tahoma, sans-serif; 
+  font-family: "Roboto", "Basier circle", Geneva, Tahoma, sans-serif;
+  padding: 10px;
 }
 
 a,
@@ -36,6 +35,8 @@ a:visited {
 h2 {
   margin: 0;
   font-weight: inherit;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 
