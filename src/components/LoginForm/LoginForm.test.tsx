@@ -1,16 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import GlobalStyles from "../../styles/GlobalStyles";
+import { screen } from "@testing-library/react";
+import renderWithProviders from "../../utils/renderWithProviders";
 import LoginForm from "./LoginForm";
 
 describe("Given LoginForm component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a header with text 'Register for the event'", () => {
-      render(
-        <>
-          <GlobalStyles />
-          <LoginForm />
-        </>
-      );
+      renderWithProviders(<LoginForm />);
 
       const renderedTitle = screen.getByRole("heading", {
         name: "Log in",
@@ -22,7 +17,7 @@ describe("Given LoginForm component", () => {
     test("Then it should show an input with the label 'User name:'", () => {
       const inputText = "User name:";
 
-      render(<LoginForm />);
+      renderWithProviders(<LoginForm />);
 
       const renderedLabel = screen.getByLabelText(inputText);
 
@@ -30,9 +25,9 @@ describe("Given LoginForm component", () => {
     });
 
     test("Then it should show an input with the label 'Password:'", () => {
-      const inputText = "Password";
+      const inputText = "Password:";
 
-      render(<LoginForm />);
+      renderWithProviders(<LoginForm />);
 
       const renderedLabel = screen.getByLabelText(inputText);
 
@@ -42,7 +37,7 @@ describe("Given LoginForm component", () => {
     test("Then it should show a button with the text `Log in`", () => {
       const buttonText = "Log in";
 
-      render(<LoginForm />);
+      renderWithProviders(<LoginForm />);
 
       const renderedButton = screen.getByRole("button", { name: buttonText });
 

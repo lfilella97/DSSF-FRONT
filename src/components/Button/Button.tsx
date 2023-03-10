@@ -1,9 +1,11 @@
+import ButtonStyled from "./ButtonStyled";
+
 interface ButtonProps {
   text: string;
   className?: string;
 }
 const Button = ({ className = "", text }: ButtonProps): JSX.Element => {
-  return <button className={className}>{text}</button>;
+  return <ButtonStyled className={className}>{text}</ButtonStyled>;
 };
 
 export default Button;

@@ -9,17 +9,6 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
-:root {
-  --main-color: #132A13;
-  --secondary-color: #fff;
-  
-  --main-text-color: #132A13;
-  --secondary-text-color:  #1D1D1D;
-
-  --main-detail-color: #1d1d1d;
-  --secodary-detail-color: #e8e8e8
-}
-
 ul,
 li {
   list-style: none;
@@ -29,11 +18,9 @@ li {
 }
 
 body {
-  background-color: var(--secondary-color);
   margin: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  font-family: "Roboto", "Basier circle", Geneva, Tahoma, sans-serif; 
+  font-family: "Roboto", "Basier circle", Geneva, Tahoma, sans-serif;
+  padding: 10px;
 }
 
 a,
@@ -48,6 +35,8 @@ a:visited {
 h2 {
   margin: 0;
   font-weight: inherit;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 
