@@ -1,8 +1,9 @@
 import Button from "../Button/Button";
+import LoginFormStyled from "./LoginFormStyles";
 
 const LoginForm = (): JSX.Element => {
   return (
-    <form className="form">
+    <LoginFormStyled className="form">
       <h2 className="form__title">Log in</h2>
       <label className="form__text" htmlFor="userName">
         User name:
@@ -17,7 +18,7 @@ const LoginForm = (): JSX.Element => {
       />
 
       <label className="form__text" htmlFor="password">
-        Password
+        Password:
       </label>
       <input
         className="form__field"
@@ -29,7 +30,7 @@ const LoginForm = (): JSX.Element => {
       />
 
       <Button text="Log in" className="form__button" />
-    </form>
+    </LoginFormStyled>
   );
 };
 

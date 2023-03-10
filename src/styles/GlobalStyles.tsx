@@ -18,7 +18,6 @@ li {
 }
 
 body {
-  background-color: var(--secondary-color);
   margin: 0;
   min-width: 100vw;
   min-height: 100vh;
