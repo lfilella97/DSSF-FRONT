@@ -9,17 +9,6 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
-:root {
-  --main-color: #132A13;
-  --secondary-color: #fff;
-  
-  --main-text-color: #132A13;
-  --secondary-text-color:  #1D1D1D;
-
-  --main-detail-color: #1d1d1d;
-  --secodary-detail-color: #e8e8e8
-}
-
 ul,
 li {
   list-style: none;
