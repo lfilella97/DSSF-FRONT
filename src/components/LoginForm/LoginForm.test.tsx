@@ -1,10 +1,16 @@
 import { render, screen } from "@testing-library/react";
+import GlobalStyles from "../../styles/GlobalStyles";
 import LoginForm from "./LoginForm";
 
 describe("Given LoginForm component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a header with text 'Register for the event'", () => {
-      render(<LoginForm />);
+      render(
+        <>
+          <GlobalStyles />
+          <LoginForm />
+        </>
+      );
 
       const renderedTitle = screen.getByRole("heading", {
         name: "Log in",
