@@ -1,6 +1,13 @@
-import { screen } from "@testing-library/react";
-import renderWithProviders from "../../utils/renderWithProviders";
+import { act, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import renderWithProviders from "../../testUtil/renderWithProviders";
 import LoginForm from "./LoginForm";
+
+const mockLoginUser = jest.fn();
+
+jest.mock("../../hooks/useUser/useUser", () => () => ({
+  loginUser: mockLoginUser,
+}));
 
 describe("Given LoginForm component", () => {
   describe("When it is rendered", () => {
@@ -42,6 +49,33 @@ describe("Given LoginForm component", () => {
       const renderedButton = screen.getByRole("button", { name: buttonText });
 
       expect(renderedButton).toBeInTheDocument();
+    });
+  });
+  describe("When its rendered and the button is clicked with the fields written", () => {
+    test("Then it should be called the function send form", async () => {
+      const inputUserNameText = "User name:";
+      const inputPasswordText = "Password:";
+      const buttonText = "Log in";
+
+      renderWithProviders(<LoginForm />);
+
+      const renderedUserNameInput = screen.getByLabelText(inputUserNameText);
+      const renderedPasswordInput = screen.getByLabelText(inputPasswordText);
+      const renderedButton = screen.getByRole("button", { name: buttonText });
+
+      await act(
+        async () => await userEvent.type(renderedUserNameInput, "bolicubo")
+      );
+      await act(
+        async () => await userEvent.type(renderedPasswordInput, "bernat")
+      );
+      await act(async () => await userEvent.click(renderedButton));
+
+      const expectedCall = {
+        userName: "bolicubo",
+        password: "bernat",
+      };
+      expect(mockLoginUser).toBeCalledWith(expectedCall);
     });
   });
 });
