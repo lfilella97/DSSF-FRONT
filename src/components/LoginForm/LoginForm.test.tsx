@@ -3,10 +3,10 @@ import userEvent from "@testing-library/user-event";
 import renderWithProviders from "../../testUtil/renderWithProviders";
 import LoginForm from "./LoginForm";
 
-const mockUseUser = jest.fn();
+const mockLoginUser = jest.fn();
 
 jest.mock("../../hooks/useUser/useUser", () => () => ({
-  loginUser: mockUseUser,
+  loginUser: mockLoginUser,
 }));
 
 describe("Given LoginForm component", () => {
@@ -75,7 +75,7 @@ describe("Given LoginForm component", () => {
         userName: "bolicubo",
         password: "bernat",
       };
-      expect(mockUseUser).toBeCalledWith(expectedCall);
+      expect(mockLoginUser).toBeCalledWith(expectedCall);
     });
   });
 });
