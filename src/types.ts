@@ -9,3 +9,8 @@ export interface UserCredentials {
   userName: string;
   password: string;
 }
+
+export interface UiState {
+  isLoading: boolean;
+  modals: string[];
+}

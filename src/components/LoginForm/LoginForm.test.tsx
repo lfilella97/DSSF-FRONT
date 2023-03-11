@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import renderWithProviders from "../../testUtil/renderWithProviders";
 import LoginForm from "./LoginForm";
@@ -63,18 +63,17 @@ describe("Given LoginForm component", () => {
       const renderedPasswordInput = screen.getByLabelText(inputPasswordText);
       const renderedButton = screen.getByRole("button", { name: buttonText });
 
-      await act(
-        async () => await userEvent.type(renderedUserNameInput, "bolicubo")
-      );
-      await act(
-        async () => await userEvent.type(renderedPasswordInput, "bernat")
-      );
-      await act(async () => await userEvent.click(renderedButton));
-
       const expectedCall = {
         userName: "bolicubo",
         password: "bernat",
       };
+
+      await waitFor(async () => {
+        await userEvent.type(renderedUserNameInput, "bolicubo");
+        await userEvent.type(renderedPasswordInput, "bernat");
+        await userEvent.click(renderedButton);
+      });
+
       expect(mockLoginUser).toBeCalledWith(expectedCall);
     });
   });
