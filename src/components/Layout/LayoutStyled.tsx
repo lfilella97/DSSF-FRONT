@@ -1,17 +1,28 @@
 import styled from "styled-components";
 
 const LayoutStyled = styled.div`
-  min-width: 100vw;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     padding: ${(props) => props.theme.padding.mainMobilePadding};
     background-color: ${(props) => props.theme.colour.main};
-    max-height: 100px;
+    &__logo {
+      filter: brightness(0) invert(1);
+    }
   }
-  .logo {
-    max-height: 100px;
-    fill: ${(props) => props.theme.colour.white};
+
+  .content {
+    margin-top: 81px;
+    width: 100%;
+    padding: ${(props) => props.theme.padding.mainMobilePadding};
   }
 `;
 

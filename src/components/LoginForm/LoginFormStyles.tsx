@@ -5,7 +5,7 @@ const LoginFormStyled = styled.form`
   flex-direction: column;
   align-items: center;
   gap: ${(props) => props.theme.gap.clickableGap};
-
+  width: 100%;
   .form {
     width: 100%;
     &__fields {
