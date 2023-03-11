@@ -20,7 +20,6 @@ li {
 body {
   margin: 0;
   font-family: "Roboto", "Basier circle", Geneva, Tahoma, sans-serif;
-  padding: 10px;
 }
 
 a,
