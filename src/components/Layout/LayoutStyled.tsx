@@ -19,6 +19,13 @@ const LayoutStyled = styled.div`
     }
   }
 
+  .navbar {
+    position: absolute;
+    top: 71px;
+    left: 0;
+    width: 100%;
+  }
+
   .content {
     margin-top: 81px;
     width: 100%;

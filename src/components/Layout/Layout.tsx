@@ -1,7 +1,9 @@
+import { PropsWithChildren } from "react";
 import { Outlet } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 import LayoutStyled from "./LayoutStyled";
 
-const Layout = (): JSX.Element => {
+const Layout = ({ children }: PropsWithChildren): JSX.Element => {
   return (
     <LayoutStyled>
       <header className="header">
@@ -14,7 +16,9 @@ const Layout = (): JSX.Element => {
           alt="Dry stone structure finder logo"
         />
       </header>
+      <NavBar />
       <main className="content">
+        {children}
         <Outlet />
       </main>
     </LayoutStyled>

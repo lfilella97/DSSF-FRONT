@@ -1,12 +1,17 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../App";
+import Layout from "../components/Layout/Layout";
 import LoginPage from "../pages/LoginPage/LoginPage";
 
-const routes = [
+const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,
-    errorElement: <div>Page not found</div>,
+    errorElement: (
+      <Layout>
+        <div>Page not found</div>
+      </Layout>
+    ),
     children: [
       {
         path: "/",
@@ -15,6 +20,14 @@ const routes = [
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/map",
+        element: <></>,
+      },
+      {
+        path: "/add-new-structure",
+        element: <></>,
       },
     ],
   },

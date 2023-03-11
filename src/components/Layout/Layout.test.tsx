@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithProviders from "../../testUtil/renderWithProviders";
+import renderWithRouters from "../../testUtil/renderWithRuter";
 import Layout from "./Layout";
 
 describe("Given the Layout component", () => {
@@ -7,7 +7,7 @@ describe("Given the Layout component", () => {
     test("Then it should show a header with a logo with an alt text 'Dry stone structure finder logo'", () => {
       const expectedAltText = "Dry stone structure finder logo";
 
-      renderWithProviders(<Layout />);
+      renderWithRouters(<Layout />);
 
       const imageWithAltText = screen.getByRole("img");
 
