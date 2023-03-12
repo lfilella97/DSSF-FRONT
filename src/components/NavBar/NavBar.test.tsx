@@ -34,10 +34,22 @@ describe("Given the component navBar", () => {
       expect(addLink).toBeInTheDocument();
     });
 
-    test("Then it should show a button with text `Exit`", () => {
-      const expectedButton = "Exit";
+    test("Then it should show a link with text `Login`", () => {
+      const expectedButton = "Login";
 
       renderWithRouters(<NavBar />);
+
+      const loginLink = screen.getByRole("link", { name: expectedButton });
+
+      expect(loginLink).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered with a user logged in", () => {
+    test("Then it should show a button with text `Logout`", () => {
+      const expectedButton = "Logout";
+
+      renderWithRouters(<NavBar />, { user: { isLogged: true, token: "" } });
 
       const button = screen.getByRole("button", { name: expectedButton });
 

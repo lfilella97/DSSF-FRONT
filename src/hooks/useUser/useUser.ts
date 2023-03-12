@@ -1,5 +1,8 @@
 import { useAppDispatch } from "../../store/features/hooks";
-import { loginUserActionCreator } from "../../store/features/users/userSlice/userSlice";
+import {
+  loginUserActionCreator,
+  logOutUserActionCreator,
+} from "../../store/features/users/userSlice/userSlice";
 import { User, UserCredentials } from "../../types";
 
 const useUser = () => {
@@ -32,7 +35,13 @@ const useUser = () => {
     }
   };
 
-  return { loginUser };
+  const logOutUser = () => {
+    localStorage.removeItem("token");
+
+    dispatch(logOutUserActionCreator());
+  };
+
+  return { loginUser, logOutUser };
 };
 
 export default useUser;

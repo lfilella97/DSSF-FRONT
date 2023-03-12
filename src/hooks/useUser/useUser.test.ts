@@ -3,13 +3,19 @@ import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
 import wrapper from "../../mocks/Wrapper";
 import { store } from "../../store/features/store";
+import {
+  loginUserActionCreator,
+  logOutUserActionCreator,
+} from "../../store/features/users/userSlice/userSlice";
+import { User } from "../../types";
 import useUser from "./useUser";
 
 const spyDispatch = jest.spyOn(store, "dispatch");
 beforeAll(() => {
   jest.clearAllMocks();
 });
-describe("Given the useUser function", () => {
+
+describe("Given the loginUser function", () => {
   describe("When it is called with the correct user credentials", () => {
     test("Then it should return a token", async () => {
       const {
@@ -18,9 +24,13 @@ describe("Given the useUser function", () => {
         },
       } = renderHook(() => useUser(), { wrapper });
 
+      const user: User = { token: "token" };
+
+      const actionCall = loginUserActionCreator(user);
+
       await loginUser({ userName: "bernat", password: "bolis" });
 
-      expect(spyDispatch).toHaveBeenCalled();
+      expect(spyDispatch).toBeCalledWith(actionCall);
     });
   });
 
@@ -43,6 +53,23 @@ describe("Given the useUser function", () => {
       });
 
       expect(expectedError).toStrictEqual(error);
+    });
+  });
+});
+
+describe("Given the logOut function", () => {
+  describe("When it is called", () => {
+    test("Then it should logOut the user", () => {
+      const {
+        result: {
+          current: { logOutUser },
+        },
+      } = renderHook(() => useUser(), { wrapper });
+
+      const actionCall = logOutUserActionCreator();
+      logOutUser();
+
+      expect(spyDispatch).toBeCalledWith(actionCall);
     });
   });
 });

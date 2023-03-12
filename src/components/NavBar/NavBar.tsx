@@ -1,7 +1,15 @@
 import { NavLink, useLocation } from "react-router-dom";
+import useUser from "../../hooks/useUser/useUser";
+import { useAppSelector } from "../../store/features/hooks";
 import NavBarStyled from "./NavBarStyled";
 
 const NavBar = (): JSX.Element => {
+  const {
+    user: { isLogged },
+  } = useAppSelector((state) => state);
+
+  const { logOutUser } = useUser();
+
   const { pathname } = useLocation();
   return (
     <NavBarStyled className="navbar">
@@ -39,10 +47,19 @@ const NavBar = (): JSX.Element => {
         </NavLink>
       </li>
       <li className="navbar__container">
-        <button className={`navbar__text`} disabled>
-          {" "}
-          Exit{" "}
-        </button>
+        {!isLogged && (
+          <NavLink className={`navbar__text`} to="login">
+            {" "}
+            Login{" "}
+          </NavLink>
+        )}
+
+        {isLogged && (
+          <button onClick={logOutUser} className={`navbar__text`}>
+            {" "}
+            {"Logout"}{" "}
+          </button>
+        )}
       </li>
     </NavBarStyled>
   );
