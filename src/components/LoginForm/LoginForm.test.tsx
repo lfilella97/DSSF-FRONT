@@ -11,7 +11,7 @@ jest.mock("../../hooks/useUser/useUser", () => () => ({
 
 describe("Given LoginForm component", () => {
   describe("When it is rendered", () => {
-    test("Then it should show a header with text 'Register for the event'", () => {
+    test("Then it should show a header with text 'Log in'", () => {
       renderWithProviders(<LoginForm />);
 
       const renderedTitle = screen.getByRole("heading", {
