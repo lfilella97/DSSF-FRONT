@@ -22,7 +22,6 @@ const LoginForm = (): JSX.Element => {
   };
   const handlePassword = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-
     password = (event.target as HTMLInputElement).value;
 
     setUserCredentials({ password, userName });
@@ -64,7 +63,7 @@ const LoginForm = (): JSX.Element => {
         />
       </div>
 
-      <Button text="Log in" className="form__button" />
+      <Button type="submit" text="Log in" className="form__button" />
     </LoginFormStyled>
   );
 };

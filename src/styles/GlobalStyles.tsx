@@ -50,10 +50,11 @@ button, input  {
 button {
   padding: 0;
   border: none;
-  outline: none;
   color: inherit;
-  background: none
+  background: none;
 }
+
+
 
 `;
 
