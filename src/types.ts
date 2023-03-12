@@ -30,3 +30,7 @@ export interface Structure {
 }
 
 export type Structures = Structure[];
+
+export interface StructuresApi {
+  structures: Structures;
+}
