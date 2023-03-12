@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../App";
 import Layout from "../components/Layout/Layout";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import LoginPage from "../pages/LoginPage/LoginPage";
 
 const routes: RouteObject[] = [
@@ -27,7 +28,12 @@ const routes: RouteObject[] = [
       },
       {
         path: "/add-new-structure",
-        element: <></>,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <></>
+          </ProtectedRoute>
+        ),
       },
     ],
   },

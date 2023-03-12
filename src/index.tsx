@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import reportWebVitals from "./reportWebVitals";
 import router from "./router/router";
-import { store } from "./store/features/store";
+import { store } from "./store/store";
 import GlobalStyles from "./styles/GlobalStyles";
 import { theme } from "./styles/theme";
 

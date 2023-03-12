@@ -1,8 +1,8 @@
-import { useAppDispatch } from "../../store/features/hooks";
 import {
   loginUserActionCreator,
   logOutUserActionCreator,
 } from "../../store/features/users/userSlice/userSlice";
+import { useAppDispatch } from "../../store/hooks";
 import { User, UserCredentials } from "../../types";
 
 const useUser = () => {

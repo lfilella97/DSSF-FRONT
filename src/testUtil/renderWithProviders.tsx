@@ -7,7 +7,7 @@ import { render } from "@testing-library/react";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import { RootState, store } from "../store/features/store";
+import { RootState, store } from "../store/store";
 import { userReducer } from "../store/features/users/userSlice/userSlice";
 import GlobalStyles from "../styles/GlobalStyles";
 import { theme } from "../styles/theme";

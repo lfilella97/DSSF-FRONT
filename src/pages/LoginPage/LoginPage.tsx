@@ -1,6 +1,6 @@
 import { Navigate } from "react-router";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import { useAppSelector } from "../../store/features/hooks";
+import { useAppSelector } from "../../store/hooks";
 import LoginPageStyled from "./LoginPageStyles";
 
 const LoginPage = (): JSX.Element => {
