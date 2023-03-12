@@ -73,3 +73,39 @@ describe("Given the logOut function", () => {
     });
   });
 });
+
+describe("Given getStorageToken", () => {
+  describe("When it is called and there isn`t a token in the local storage", () => {
+    test("Then it shouldn`t login the user", () => {
+      const {
+        result: {
+          current: { checkStorageToken },
+        },
+      } = renderHook(() => useUser(), { wrapper });
+
+      checkStorageToken();
+
+      expect(spyDispatch).not.toBeCalled();
+    });
+  });
+
+  describe("When it is called and there is a token in the local storage", () => {
+    test("Then it should login the user", () => {
+      const {
+        result: {
+          current: { checkStorageToken },
+        },
+      } = renderHook(() => useUser(), { wrapper });
+
+      localStorage.setItem("token", "token");
+
+      const expectedDispatchCaller = loginUserActionCreator({ token: "token" });
+
+      checkStorageToken();
+
+      expect(spyDispatch).toBeCalledWith(expectedDispatchCaller);
+
+      localStorage.removeItem("token");
+    });
+  });
+});

@@ -1,9 +1,16 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import useUser from "../../hooks/useUser/useUser";
 import NavBar from "../NavBar/NavBar";
 import LayoutStyled from "./LayoutStyled";
 
 const Layout = ({ children }: PropsWithChildren): JSX.Element => {
+  const { checkStorageToken } = useUser();
+
+  useEffect(() => {
+    checkStorageToken();
+  }, [checkStorageToken]);
+
   return (
     <LayoutStyled>
       <header className="header">
