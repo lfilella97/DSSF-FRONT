@@ -4,6 +4,7 @@ import {
 } from "../../store/features/users/userSlice/userSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { User, UserCredentials } from "../../types";
+import { useCallback } from "react";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +42,16 @@ const useUser = () => {
     dispatch(logOutUserActionCreator());
   };
 
-  return { loginUser, logOutUser };
+  const getStorageToken = useCallback(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
+
+    dispatch(loginUserActionCreator({ token }));
+  }, [dispatch]);
+
+  return { loginUser, logOutUser, checkStorageToken: getStorageToken };
 };
 
 export default useUser;
