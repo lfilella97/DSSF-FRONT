@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
-import { useAppSelector } from "../../store/features/hooks";
+import { useAppSelector } from "../../store/hooks";
 import NavBarStyled from "./NavBarStyled";
 
 const NavBar = (): JSX.Element => {

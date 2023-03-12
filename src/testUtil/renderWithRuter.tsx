@@ -1,7 +1,7 @@
 import { PreloadedState } from "@reduxjs/toolkit";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import router from "../router/router";
-import { RootState } from "../store/features/store";
+import { RootState } from "../store/store";
 import renderWithProviders from "./renderWithProviders";
 
 const getComponentRouter = (Ui: JSX.Element) =>
