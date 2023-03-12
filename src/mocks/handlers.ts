@@ -12,6 +12,17 @@ export const handlers = [
       );
     }
   ),
+  rest.get(
+    `${process.env.REACT_APP_URL_API}/structures`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          structures: [],
+        })
+      );
+    }
+  ),
 ];
 
 export const errorHandlers = [

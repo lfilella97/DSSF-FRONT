@@ -1,7 +1,7 @@
 import modal from "../../modals/modals";
 import { loadStructuresActionCreator } from "../../store/features/structures/structuresSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { ErrorResponse, StructuresApi } from "../../types";
+import { StructuresApi } from "../../types";
 
 const useStructures = () => {
   const dispatch = useAppDispatch();
@@ -14,13 +14,7 @@ const useStructures = () => {
         `${process.env.REACT_APP_URL_API}${path}`!
       );
 
-      const strucutresApi: StructuresApi = await response.json();
-
-      if (!response.ok) {
-        const { error } = strucutresApi as unknown as ErrorResponse;
-        throw new Error(error);
-      }
-      const { structures } = strucutresApi;
+      const { structures }: StructuresApi = await response.json();
 
       dispatch(loadStructuresActionCreator(structures));
     } catch (error) {

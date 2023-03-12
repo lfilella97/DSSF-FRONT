@@ -38,7 +38,7 @@ describe("Given the loginUser function", () => {
     beforeEach(() => {
       server.resetHandlers(...errorHandlers);
     });
-    test("Then it should throw the error 'Unauthorized'", async () => {
+    test("Then it should't call dispatch", async () => {
       const {
         result: {
           current: { loginUser },
