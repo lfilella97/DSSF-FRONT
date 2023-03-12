@@ -16,7 +16,9 @@ const NavBar = (): JSX.Element => {
       <li className="navbar__container">
         <NavLink
           className={`navbar__text ${
-            pathname === "/" ? "navbar__text--actual-page" : ""
+            pathname === "/" || pathname === "/home"
+              ? "navbar__text--actual-page"
+              : ""
           }`}
           to="/"
         >
@@ -24,17 +26,21 @@ const NavBar = (): JSX.Element => {
           Home{" "}
         </NavLink>
       </li>
-      <li className="navbar__container">
-        <NavLink
-          className={`navbar__text ${
-            pathname === "/add-new-structure" ? "navbar__text--actual-page" : ""
-          }`}
-          to="add-new-structure"
-        >
-          {" "}
-          Add{" "}
-        </NavLink>
-      </li>
+      {isLogged && (
+        <li className="navbar__container">
+          <NavLink
+            className={`navbar__text ${
+              pathname === "/add-new-structure"
+                ? "navbar__text--actual-page"
+                : ""
+            }`}
+            to="add-new-structure"
+          >
+            {" "}
+            Add{" "}
+          </NavLink>
+        </li>
+      )}
       <li className="navbar__container">
         <NavLink
           className={`navbar__text ${
@@ -48,7 +54,12 @@ const NavBar = (): JSX.Element => {
       </li>
       <li className="navbar__container">
         {!isLogged && (
-          <NavLink className={`navbar__text`} to="login">
+          <NavLink
+            className={`navbar__text ${
+              pathname === "/login" ? "navbar__text--actual-page" : ""
+            }`}
+            to="login"
+          >
             {" "}
             Login{" "}
           </NavLink>

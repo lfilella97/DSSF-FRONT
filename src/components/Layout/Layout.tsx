@@ -11,7 +11,7 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
         <img
           className="header__logo"
           width="260"
-          height="47"
+          height="51"
           src={"images/DSSF-logo.svg"}
           alt="Dry stone structure finder logo"
         />
