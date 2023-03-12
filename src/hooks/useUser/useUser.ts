@@ -3,8 +3,9 @@ import {
   logOutUserActionCreator,
 } from "../../store/features/users/userSlice/userSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { User, UserCredentials } from "../../types";
+import { ErrorResponse, User, UserCredentials } from "../../types";
 import { useCallback } from "react";
+import modal from "../../modals/modals";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
@@ -25,14 +26,17 @@ const useUser = () => {
       const user: User = await response.json();
 
       if (!response.ok) {
-        throw new Error(response.statusText);
+        const { error } = user as unknown as ErrorResponse;
+        throw new Error(error);
       }
+
+      modal("Success!");
 
       localStorage.setItem("token", user.token);
 
       dispatch(loginUserActionCreator(user));
     } catch (error) {
-      return new Error((error as Error).message);
+      modal((error as Error).message, "error");
     }
   };
 

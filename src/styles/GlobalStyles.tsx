@@ -9,7 +9,9 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
-
+:root {
+  --toastify-font-family: "Roboto";
+}
 
 ul,
 li {
