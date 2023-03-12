@@ -39,20 +39,18 @@ describe("Given the loginUser function", () => {
       server.resetHandlers(...errorHandlers);
     });
     test("Then it should throw the error 'Unauthorized'", async () => {
-      const expectedError = new Error("Unauthorized");
-
       const {
         result: {
           current: { loginUser },
         },
       } = renderHook(() => useUser(), { wrapper });
 
-      const error = await loginUser({
+      await loginUser({
         userName: "adrian",
         password: "pallars",
       });
 
-      expect(expectedError).toStrictEqual(error);
+      expect(spyDispatch).not.toBeCalled();
     });
   });
 });

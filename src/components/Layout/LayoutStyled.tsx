@@ -26,6 +26,11 @@ const LayoutStyled = styled.div`
     width: 100%;
   }
 
+  .Toastify__close-button > svg {
+    min-width: 42px;
+    min-height: 42px;
+  }
+
   .content {
     margin-top: 81px;
     width: 100%;

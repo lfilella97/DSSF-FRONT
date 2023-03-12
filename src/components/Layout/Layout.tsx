@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import useUser from "../../hooks/useUser/useUser";
 import NavBar from "../NavBar/NavBar";
 import LayoutStyled from "./LayoutStyled";
@@ -25,6 +26,7 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
       </header>
       <NavBar />
       <main className="content">
+        <ToastContainer className="modal" />
         {children}
         <Outlet />
       </main>
