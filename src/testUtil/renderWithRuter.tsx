@@ -10,6 +10,10 @@ const getComponentRouter = (Ui: JSX.Element) =>
       path: "/",
       element: Ui,
     },
+    {
+      path: "/home",
+      element: <></>,
+    },
   ]);
 
 const renderWithRouters = (

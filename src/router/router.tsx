@@ -14,7 +14,7 @@ const routes: RouteObject[] = [
     ),
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <></>,
       },
       {
