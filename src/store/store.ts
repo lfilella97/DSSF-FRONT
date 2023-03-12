@@ -5,10 +5,15 @@ import {
   PreloadedState,
   combineReducers,
 } from "@reduxjs/toolkit";
+import { structuresReducer } from "./features/structures/structuresSlice";
 import { uiReducer } from "./features/users/uiSlice/uiSlice";
 import { userReducer } from "./features/users/userSlice/userSlice";
 
-const rootReducer = combineReducers({ user: userReducer, ui: uiReducer });
+const rootReducer = combineReducers({
+  user: userReducer,
+  ui: uiReducer,
+  structures: structuresReducer,
+});
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
