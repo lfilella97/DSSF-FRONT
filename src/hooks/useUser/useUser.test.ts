@@ -2,11 +2,11 @@ import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
 import wrapper from "../../mocks/Wrapper";
-import { store } from "../../store/features/store";
 import {
   loginUserActionCreator,
   logOutUserActionCreator,
 } from "../../store/features/users/userSlice/userSlice";
+import { store } from "../../store/store";
 import { User } from "../../types";
 import useUser from "./useUser";
 
