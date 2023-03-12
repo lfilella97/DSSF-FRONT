@@ -66,7 +66,11 @@ const NavBar = (): JSX.Element => {
         )}
 
         {isLogged && (
-          <button onClick={logOutUser} className={`navbar__text`}>
+          <button
+            onClick={logOutUser}
+            type={"button"}
+            className={`navbar__text`}
+          >
             {" "}
             {"Logout"}{" "}
           </button>
