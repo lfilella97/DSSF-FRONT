@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Structures } from "../../../types";
+import { Structures } from "../../../../types";
 
 const structuresInitialState: Structures = [];
 const structuresSlice = createSlice({

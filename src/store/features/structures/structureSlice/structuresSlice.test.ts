@@ -1,4 +1,4 @@
-import { Structures } from "../../../types";
+import { Structures } from "../../../../types";
 import {
   loadStructuresActionCreator,
   structuresReducer,

@@ -1,5 +1,5 @@
 import modal from "../../modals/modals";
-import { loadStructuresActionCreator } from "../../store/features/structures/structuresSlice";
+import { loadStructuresActionCreator } from "../../store/features/structures/structureSlice/structuresSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { StructuresApi } from "../../types";
 

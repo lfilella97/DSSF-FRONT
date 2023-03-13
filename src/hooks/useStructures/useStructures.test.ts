@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
 import wrapper from "../../mocks/Wrapper";
-import { loadStructuresActionCreator } from "../../store/features/structures/structuresSlice";
+import { loadStructuresActionCreator } from "../../store/features/structures/structureSlice/structuresSlice";
 import { store } from "../../store/store";
 import { Structures } from "../../types";
 import useStructures from "./useStructures";
