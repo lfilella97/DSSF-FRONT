@@ -2,16 +2,19 @@ import styled from "styled-components";
 
 const LoadingPageStyled = styled.div`
   height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  background-color: #132a1383;
+  z-index: 1;
+
   .loader {
-    position: relative;
     width: 48px;
     height: 48px;
     background: ${(props) => props.theme.colour.main};
     transform: rotateX(65deg) rotate(45deg);
-    // remove bellows command for perspective change
     transform: perspective(200px) rotateX(65deg) rotate(45deg);
     color: ${(props) => props.theme.colour.secondary};
     animation: layers1 1s linear infinite alternate;

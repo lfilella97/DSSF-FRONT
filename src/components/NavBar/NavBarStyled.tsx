@@ -17,11 +17,10 @@ const NavBarStyled = styled.ul`
       text-align: center;
       color: ${(props) => props.theme.colour.white};
       font-size: ${(props) => props.theme.fonts.textFontSizeM};
-
-      &--actual-page {
-        text-decoration: underline;
-      }
     }
+  }
+  .active {
+    text-decoration: underline;
   }
 `;
 

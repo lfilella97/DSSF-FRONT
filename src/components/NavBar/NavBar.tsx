@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
 import NavBarStyled from "./NavBarStyled";
@@ -10,56 +10,31 @@ const NavBar = (): JSX.Element => {
 
   const { logOutUser } = useUser();
 
-  const { pathname } = useLocation();
   return (
     <NavBarStyled className="navbar">
       <li className="navbar__container">
-        <NavLink
-          className={`navbar__text ${
-            pathname === "/" || pathname === "/home"
-              ? "navbar__text--actual-page"
-              : ""
-          }`}
-          to="/"
-        >
+        <NavLink className={`navbar__text`} to="/">
           {" "}
           Home{" "}
         </NavLink>
       </li>
       {isLogged && (
         <li className="navbar__container">
-          <NavLink
-            className={`navbar__text ${
-              pathname === "/add-new-structure"
-                ? "navbar__text--actual-page"
-                : ""
-            }`}
-            to="add-new-structure"
-          >
+          <NavLink className={`navbar__text`} to="add-new-structure">
             {" "}
             Add{" "}
           </NavLink>
         </li>
       )}
       <li className="navbar__container">
-        <NavLink
-          className={`navbar__text ${
-            pathname === "/map" ? "navbar__text--actual-page" : ""
-          }`}
-          to="map"
-        >
+        <NavLink className={`navbar__text`} to="map">
           {" "}
           Map{" "}
         </NavLink>
       </li>
       <li className="navbar__container">
         {!isLogged && (
-          <NavLink
-            className={`navbar__text ${
-              pathname === "/login" ? "navbar__text--actual-page" : ""
-            }`}
-            to="login"
-          >
+          <NavLink className={`navbar__text`} to="login">
             {" "}
             Login{" "}
           </NavLink>

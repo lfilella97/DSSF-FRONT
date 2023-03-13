@@ -14,4 +14,17 @@ describe("Given the Layout component", () => {
       expect(imageWithAltText).toHaveAccessibleName(expectedAltText);
     });
   });
+
+  describe("When it is rendered and is loading", () => {
+    test.only("Then it should apper the loader", () => {
+      const expectedAltText = "This page is loading...";
+      const loadingState = { ui: { isLoading: true, modals: [] } };
+
+      renderWithRouters(<Layout />, loadingState);
+
+      const renderedLoader = screen.getByLabelText(expectedAltText);
+
+      expect(renderedLoader).toBeInTheDocument();
+    });
+  });
 });
