@@ -5,8 +5,8 @@ import {
   PreloadedState,
   combineReducers,
 } from "@reduxjs/toolkit";
-import { structuresReducer } from "./features/structures/structuresSlice";
-import { uiReducer } from "./features/users/uiSlice/uiSlice";
+import { structuresReducer } from "./features/structures/structureSlice/structuresSlice";
+import { uiReducer } from "./features/ui/uiSlice/uiSlice";
 import { userReducer } from "./features/users/userSlice/userSlice";
 
 const rootReducer = combineReducers({
