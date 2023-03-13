@@ -14,11 +14,15 @@ const useStructures = () => {
         `${process.env.REACT_APP_URL_API}${path}`!
       );
 
+      if (!response.ok) {
+        throw new Error();
+      }
+
       const { structures }: StructuresApi = await response.json();
 
       dispatch(loadStructuresActionCreator(structures));
     } catch (error) {
-      modal((error as Error).message, "error");
+      modal("Ups, something went wrong");
     }
   };
 

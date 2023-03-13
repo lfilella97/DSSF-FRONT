@@ -26,6 +26,17 @@ export const handlers = [
 ];
 
 export const errorHandlers = [
+  rest.get(
+    `${process.env.REACT_APP_URL_API}/structures`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(401),
+        ctx.json({
+          error: "Structure not found",
+        })
+      );
+    }
+  ),
   rest.post(
     `${process.env.REACT_APP_URL_API}/user/login`,
     async (req, res, ctx) => {

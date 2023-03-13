@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../App";
 import Layout from "../components/Layout/Layout";
+import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import LoginPage from "../pages/LoginPage/LoginPage";
 
@@ -20,7 +21,11 @@ const routes: RouteObject[] = [
       },
       {
         path: "/login",
-        element: <LoginPage />,
+        element: (
+          <LoggedRedirects>
+            <LoginPage />
+          </LoggedRedirects>
+        ),
       },
       {
         path: "/map",
