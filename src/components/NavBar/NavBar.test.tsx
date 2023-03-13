@@ -1,5 +1,7 @@
+import { PreloadedState } from "@reduxjs/toolkit";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { RootState } from "../../store/store";
 import renderWithRouters from "../../testUtil/renderWithRuter";
 import NavBar from "./NavBar";
 
@@ -45,12 +47,13 @@ describe("Given the navBar with real router", () => {
       const expectedMapLink = "Map";
       const expectedButton = "Logout";
 
-      const preloadState = {
+      const preloadState: PreloadedState<RootState> = {
         user: { isLogged: true, token: "token" },
+        ui: { isLoading: false, modals: [] },
+        structures: [],
       };
 
       renderWithRouters(false as unknown as React.ReactElement, preloadState);
-
       let homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
       await waitFor(async () => {

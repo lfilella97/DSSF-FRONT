@@ -6,12 +6,18 @@ import { useAppDispatch } from "../../store/hooks";
 import { ErrorResponse, User, UserCredentials } from "../../types";
 import { useCallback } from "react";
 import modal from "../../modals/modals";
+import {
+  turnOffLoaderActionCreator,
+  turnOnLoaderActionCreator,
+} from "../../store/features/ui/uiSlice/uiSlice";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
     const path = "/user/login";
+
+    dispatch(turnOnLoaderActionCreator());
 
     try {
       const response: Response = await fetch(
@@ -34,8 +40,11 @@ const useUser = () => {
 
       localStorage.setItem("token", user.token);
 
+      dispatch(turnOffLoaderActionCreator());
+
       dispatch(loginUserActionCreator(user));
     } catch (error) {
+      dispatch(turnOffLoaderActionCreator());
       modal((error as Error).message, "error");
     }
   };
