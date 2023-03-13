@@ -16,7 +16,7 @@ describe("Given the Layout component", () => {
   });
 
   describe("When it is rendered and is loading", () => {
-    test.only("Then it should apper the loader", () => {
+    test("Then it should apper the loader", () => {
       const expectedAltText = "This page is loading...";
       const loadingState = { ui: { isLoading: true, modals: [] } };
 

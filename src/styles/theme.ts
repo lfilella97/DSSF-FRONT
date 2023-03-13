@@ -22,6 +22,7 @@ export const theme: DefaultTheme = {
   border: {
     borderRadiusSmall: "10px",
     borderRadiusLarge: "15px",
+    borderRadiusXL: "20px",
   },
   padding: {
     mainMobilePadding: "10px",

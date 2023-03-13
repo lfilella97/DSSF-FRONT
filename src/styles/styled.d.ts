@@ -22,6 +22,7 @@ declare module "styled-components" {
     border: {
       borderRadiusSmall: string;
       borderRadiusLarge: string;
+      borderRadiusXL: string;
     };
     padding: {
       mainMobilePadding: string;
