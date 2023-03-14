@@ -7,6 +7,7 @@ const StructureStyled = styled.article`
   border-radius: ${(props) => props.theme.border.borderRadiusXL};
   background-color: ${(props) => props.theme.colour.secondary};
   padding: 1px;
+  filter: drop-shadow(2px 4px 6px black);
 
   .structure {
     &__wrap {
