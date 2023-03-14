@@ -29,10 +29,10 @@ const Structure = ({
         <ul className="structure__info">
           <li>
             <FontAwesomeIcon name="elevation" icon={solid("mountain")} />
-            <span>{elevation} meters</span>
+            <span>{elevation ? elevation : "---"} meters</span>
           </li>
           <li>
-            <FontAwesomeIcon name="elevation" icon={solid("water")} />
+            <FontAwesomeIcon name="elevation" icon={solid("layer-group")} />
             <span>{type}</span>
           </li>
           <li>

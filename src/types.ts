@@ -1,3 +1,5 @@
+import { IconName } from "@fortawesome/fontawesome-svg-core";
+
 export interface UserState {
   token: string;
   isLogged: boolean;
@@ -27,6 +29,9 @@ export interface Structure {
   elevation: string;
   creationTime: string;
   description: string;
+  location: string;
+  image: string;
+  id: string;
 }
 
 export type Structures = Structure[];

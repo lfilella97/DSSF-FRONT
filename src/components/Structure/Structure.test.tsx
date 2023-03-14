@@ -8,7 +8,7 @@ describe("Given the component Structure", () => {
       const structure = {
         elevation: "455",
         name: "Bassa del mas de Roer",
-        type: "Water",
+        type: "string",
         location: "La granadella",
         image:
           "https://sfxfnjejlztsnoxyochi.supabase.co/storage/v1/object/public/structures/Aljub%20del%20mas%20de%20Roer.jpg",

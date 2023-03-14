@@ -17,7 +17,10 @@ describe("Given the structure reducer", () => {
           elevation: "high",
           name: "structure",
           owner: "admin",
-          type: "coso",
+          type: "construction",
+          image: "image.png",
+          location: "La granadella",
+          id: "2345678",
         },
       ];
 
