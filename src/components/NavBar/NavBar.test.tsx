@@ -10,7 +10,7 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Home`", () => {
       const expectedHomeLink = "Home";
 
-      renderWithRouters();
+      renderWithRouters(<NavBar />);
 
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
