@@ -3,13 +3,17 @@ import modal from "../../modals/modals";
 import { loadStructuresActionCreator } from "../../store/features/structures/structureSlice/structuresSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { StructuresApi } from "../../types";
+import {
+  turnOffLoaderActionCreator,
+  turnOnLoaderActionCreator,
+} from "../../store/features/ui/uiSlice/uiSlice";
 
 const useStructures = () => {
   const dispatch = useAppDispatch();
 
   const getStructures = useCallback(async () => {
     const path = "/structures";
-
+    dispatch(turnOnLoaderActionCreator());
     try {
       const response: Response = await fetch(
         `${process.env.REACT_APP_URL_API}${path}`!
@@ -20,9 +24,10 @@ const useStructures = () => {
       }
 
       const { structures }: StructuresApi = await response.json();
-
+      dispatch(turnOffLoaderActionCreator());
       dispatch(loadStructuresActionCreator(structures));
     } catch (error) {
+      dispatch(turnOffLoaderActionCreator());
       modal("Ups, something went wrong");
     }
   }, [dispatch]);

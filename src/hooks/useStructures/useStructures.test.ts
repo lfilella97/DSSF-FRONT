@@ -43,7 +43,7 @@ describe("Given the getStructures function", () => {
 
       await getStructures();
 
-      expect(spyDispatch).not.toBeCalled();
+      expect(spyDispatch).toBeCalledTimes(2);
     });
   });
 });

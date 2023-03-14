@@ -19,6 +19,7 @@ const NavBarStyled = styled.ul`
       font-size: ${(props) => props.theme.fonts.textFontSizeM};
     }
   }
+
   .active {
     text-decoration: underline;
   }
