@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import StructureStyled from "./StructureStyled";
+import { useAppSelector } from "../../store/hooks";
+import { NavLink } from "react-router-dom";
 
 interface StructureProps {
   structure: {
@@ -9,12 +11,16 @@ interface StructureProps {
     type: string;
     location: string;
     image: string;
+    id: string;
   };
 }
 
 const Structure = ({
-  structure: { elevation, name, type, location, image },
+  structure: { elevation, name, type, location, image, id },
 }: StructureProps): JSX.Element => {
+  const {
+    user: { isLogged },
+  } = useAppSelector((state) => state);
   return (
     <StructureStyled className="structure">
       <div className="structure__wrap">
@@ -42,10 +48,17 @@ const Structure = ({
           </li>
         </ul>
       </div>
-      <span className="structure__buttons">
-        <FontAwesomeIcon name="elevation" icon={solid("edit")} />
-        <FontAwesomeIcon name="elevation" icon={solid("trash")} />
-      </span>
+
+      {isLogged && (
+        <span className="structure__buttons">
+          <NavLink aria-label="modify" to={`structure/edit/${name}/${id}`}>
+            <FontAwesomeIcon name="elevation" icon={solid("edit")} />
+          </NavLink>
+          <button aria-label="delete">
+            <FontAwesomeIcon name="elevation" icon={solid("trash")} />
+          </button>
+        </span>
+      )}
     </StructureStyled>
   );
 };

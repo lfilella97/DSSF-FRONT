@@ -30,6 +30,7 @@ const StructureStyled = styled.article`
       white-space: nowrap;
       font-size: ${(props) => props.theme.fonts.titleFontSizeM};
     }
+
     &__info {
       display: flex;
       flex-direction: column;
@@ -39,6 +40,7 @@ const StructureStyled = styled.article`
         > span {
           padding: 0 0 0 15px;
         }
+
         > svg {
           height: 22px;
           width: 22px;
@@ -51,10 +53,12 @@ const StructureStyled = styled.article`
       justify-content: space-around;
       padding: 30px 0 20px;
 
-      > svg {
-        height: 40px;
-        width: 40px;
-        color: white;
+      > * {
+        > svg {
+          height: 40px;
+          width: 40px;
+          color: white;
+        }
       }
     }
   }

@@ -47,7 +47,7 @@ const NavBar = (): JSX.Element => {
             className={`navbar__text`}
           >
             {" "}
-            {"Logout"}{" "}
+            Logout{" "}
           </button>
         )}
       </li>
