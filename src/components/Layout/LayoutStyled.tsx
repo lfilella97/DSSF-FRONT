@@ -14,6 +14,7 @@ const LayoutStyled = styled.div`
     width: 100%;
     padding: ${(props) => props.theme.padding.mainMobilePadding};
     background-color: ${(props) => props.theme.colour.main};
+
     &__logo {
       filter: brightness(0) invert(1);
     }
@@ -35,6 +36,9 @@ const LayoutStyled = styled.div`
     margin-top: 115px;
     width: 100%;
     padding: ${(props) => props.theme.padding.mainMobilePadding};
+  }
+  .not-found {
+    text-align: center;
   }
 `;
 

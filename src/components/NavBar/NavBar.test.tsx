@@ -1,8 +1,8 @@
-import { PreloadedState } from "@reduxjs/toolkit";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { RootState } from "../../store/store";
-import renderWithRouters from "../../testUtil/renderWithRuter";
+import renderWithRoutersAndProviders, {
+  RouterAndState,
+} from "../../testUtils/renderWithRouterAndProviders";
 import NavBar from "./NavBar";
 
 describe("Given the component navBar", () => {
@@ -10,7 +10,11 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Home`", () => {
       const expectedHomeLink = "Home";
 
-      renderWithRouters(<NavBar />);
+      const routerAndState: RouterAndState = {
+        ui: <NavBar />,
+      };
+
+      renderWithRoutersAndProviders(routerAndState);
 
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
@@ -20,7 +24,11 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Map`", () => {
       const expectedMapLink = "Map";
 
-      renderWithRouters(<NavBar />);
+      const routerAndState: RouterAndState = {
+        ui: <NavBar />,
+      };
+
+      renderWithRoutersAndProviders(routerAndState);
 
       const mapLink = screen.getByRole("link", { name: expectedMapLink });
 
@@ -30,7 +38,11 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Login`", () => {
       const expectedButton = "Login";
 
-      renderWithRouters(<NavBar />);
+      const routerAndState: RouterAndState = {
+        ui: <NavBar />,
+      };
+
+      renderWithRoutersAndProviders(routerAndState);
 
       const loginLink = screen.getByRole("link", { name: expectedButton });
 
@@ -47,13 +59,15 @@ describe("Given the navBar with real router", () => {
       const expectedMapLink = "Map";
       const expectedButton = "Logout";
 
-      const preloadState: PreloadedState<RootState> = {
-        user: { isLogged: true, token: "token" },
-        ui: { isLoading: false, modals: [] },
-        structures: [],
+      const routerAndState: RouterAndState = {
+        preloadedState: {
+          user: { isLogged: true, token: "token" },
+          ui: { isLoading: false, modals: [] },
+          structures: [],
+        },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(routerAndState);
       let homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
       await waitFor(async () => {
@@ -78,11 +92,13 @@ describe("Given the navBar with real router", () => {
       const expectedMapLink = "Map";
       const expectedButton = "Logout";
 
-      const preloadState = {
-        user: { isLogged: true, token: "token" },
+      const routerAndState: RouterAndState = {
+        preloadedState: {
+          user: { isLogged: true, token: "token" },
+        },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(routerAndState);
 
       let addLink = screen.getByRole("link", { name: expectedAddLink });
 
@@ -108,11 +124,13 @@ describe("Given the navBar with real router", () => {
       const expectedMapLink = "Map";
       const expectedButton = "Logout";
 
-      const preloadState = {
-        user: { isLogged: true, token: "token" },
+      const routerAndState: RouterAndState = {
+        preloadedState: {
+          user: { isLogged: true, token: "token" },
+        },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(routerAndState);
 
       const mapLink = screen.getByRole("link", { name: expectedMapLink });
 
@@ -139,11 +157,13 @@ describe("Given the navBar with real router", () => {
       const expectedButton = "Logout";
       const expectedLoginLink = "Login";
 
-      const preloadState = {
-        user: { isLogged: true, token: "token" },
+      const routerAndState: RouterAndState = {
+        preloadedState: {
+          user: { isLogged: true, token: "token" },
+        },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(routerAndState);
 
       const button = screen.getByRole("button", { name: expectedButton });
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
@@ -170,7 +190,7 @@ describe("Given the navBar with real router", () => {
       const expectedMapLink = "Map";
       const expectedLoginLink = "Login";
 
-      renderWithRouters();
+      renderWithRoutersAndProviders();
 
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
       const mapLink = screen.getByRole("link", { name: expectedMapLink });

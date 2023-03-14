@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoadingPageStyled = styled.div`
+const LoadingStyled = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -46,4 +46,4 @@ const LoadingPageStyled = styled.div`
   }
 `;
 
-export default LoadingPageStyled;
+export default LoadingStyled;
