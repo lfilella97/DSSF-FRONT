@@ -16,10 +16,15 @@ const getComponentRouter = (Ui: JSX.Element) =>
     },
   ]);
 
-const renderWithRoutersAndProviders = (
-  ui?: React.ReactElement,
-  preloadedState?: PreloadedState<RootState>
-) => {
+export interface RouterAndState {
+  ui?: React.ReactElement;
+  preloadedState?: PreloadedState<RootState>;
+}
+
+const renderWithRoutersAndProviders = ({
+  ui,
+  preloadedState,
+}: RouterAndState = {}) => {
   const customRouter = ui ? getComponentRouter(ui) : router;
 
   return renderWithProviders(

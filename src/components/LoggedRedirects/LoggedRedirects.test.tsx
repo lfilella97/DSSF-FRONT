@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
-import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
-import { UserState } from "../../types";
+import renderWithRoutersAndProviders, {
+  RouterAndState,
+} from "../../testUtils/renderWithRouterAndProviders";
 import LoggedRedirects from "./LoggedRedirects";
 
 describe("Given the component LoggedRedirects", () => {
@@ -9,14 +10,14 @@ describe("Given the component LoggedRedirects", () => {
       const text = "Hello world";
       const containerWithText = <div>{text}</div>;
 
-      const notLoggedUser: UserState = { isLogged: false, token: "" };
+      const routerAndState: RouterAndState = {
+        ui: <LoggedRedirects children={containerWithText} />,
+        preloadedState: {
+          user: { isLogged: false, token: "" },
+        },
+      };
 
-      renderWithRoutersAndProviders(
-        <LoggedRedirects children={containerWithText} />,
-        {
-          user: notLoggedUser,
-        }
-      );
+      renderWithRoutersAndProviders(routerAndState);
 
       const expectedRenderedText = screen.getByText(text);
 
@@ -29,14 +30,14 @@ describe("Given the component LoggedRedirects", () => {
       const text = "Hello world";
       const containerWithText = <div>{text}</div>;
 
-      const user: UserState = { isLogged: true, token: "token" };
+      const routerAndState: RouterAndState = {
+        ui: <LoggedRedirects children={containerWithText} />,
+        preloadedState: {
+          user: { isLogged: true, token: "token" },
+        },
+      };
 
-      renderWithRoutersAndProviders(
-        <LoggedRedirects children={containerWithText} />,
-        {
-          user,
-        }
-      );
+      renderWithRoutersAndProviders(routerAndState);
 
       const expectedRenderedText = screen.queryByText(text);
 

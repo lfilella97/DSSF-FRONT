@@ -12,7 +12,7 @@ const routes: RouteObject[] = [
     element: <App />,
     errorElement: (
       <Layout>
-        <div>Page not found</div>
+        <div>404 Page not found</div>
       </Layout>
     ),
     children: [

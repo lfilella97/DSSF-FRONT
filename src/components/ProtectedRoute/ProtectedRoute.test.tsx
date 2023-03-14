@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
-import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
-import { UserState } from "../../types";
+import renderWithRoutersAndProviders, {
+  RouterAndState,
+} from "../../testUtils/renderWithRouterAndProviders";
 import ProtectedRoute from "./ProtectedRoute";
 
 describe("Given the component ProtectedRoute", () => {
@@ -9,14 +10,14 @@ describe("Given the component ProtectedRoute", () => {
       const text = "Hello world";
       const containerWithText = <div>{text}</div>;
 
-      const loggedUser: UserState = { isLogged: false, token: "token" };
+      const routerAndState: RouterAndState = {
+        ui: <ProtectedRoute children={containerWithText} />,
+        preloadedState: {
+          user: { isLogged: false, token: "token" },
+        },
+      };
 
-      renderWithRoutersAndProviders(
-        <ProtectedRoute children={containerWithText} />,
-        {
-          user: loggedUser,
-        }
-      );
+      renderWithRoutersAndProviders(routerAndState);
 
       const expectedRenderedText = screen.getByText(text);
 
@@ -29,14 +30,14 @@ describe("Given the component ProtectedRoute", () => {
       const text = "Hello world";
       const containerWithText = <div>{text}</div>;
 
-      const user: UserState = { isLogged: false, token: "" };
+      const routerAndState: RouterAndState = {
+        ui: <ProtectedRoute children={containerWithText} />,
+        preloadedState: {
+          user: { isLogged: false, token: "" },
+        },
+      };
 
-      renderWithRoutersAndProviders(
-        <ProtectedRoute children={containerWithText} />,
-        {
-          user,
-        }
-      );
+      renderWithRoutersAndProviders(routerAndState);
 
       const expectedRenderedText = screen.queryByText(text);
 
