@@ -4,7 +4,7 @@ const NavBarStyled = styled.ul`
   background-color: ${(props) => props.theme.colour.secondary};
   display: flex;
   padding: ${(props) => props.theme.padding.mainMobilePadding};
-  justify-content: space-around;
+  justify-content: space-between;
 
   .navbar {
     &__container {
