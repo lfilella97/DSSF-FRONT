@@ -2,8 +2,8 @@ import { PropsWithChildren, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import useUser from "../../hooks/useUser/useUser";
-import LoadingPage from "../../pages/LoadingPage/LoadingPage";
 import { useAppSelector } from "../../store/hooks";
+import Loading from "../Loading/Loading";
 import NavBar from "../NavBar/NavBar";
 import LayoutStyled from "./LayoutStyled";
 
@@ -20,7 +20,7 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
 
   return (
     <LayoutStyled>
-      {isLoading && <LoadingPage />}
+      {isLoading && <Loading />}
       <header className="header">
         <link rel="preload" href="/images/DSSF-logo.svg" as="image" />
         <img
