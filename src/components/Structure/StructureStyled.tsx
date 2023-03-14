@@ -11,7 +11,6 @@ const StructureStyled = styled.article`
   .structure {
     &__wrap {
       width: 100%;
-
       background-color: ${(props) => props.theme.colour.white};
       border-radius: ${(props) => props.theme.border.borderRadiusXL};
       padding: 15px;
@@ -25,6 +24,9 @@ const StructureStyled = styled.article`
 
     &__title {
       padding: 10px 0 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
       font-size: ${(props) => props.theme.fonts.titleFontSizeM};
     }
     &__info {

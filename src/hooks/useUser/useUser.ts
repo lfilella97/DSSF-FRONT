@@ -36,8 +36,6 @@ const useUser = () => {
         throw new Error(error);
       }
 
-      modal("Success!");
-
       localStorage.setItem("token", user.token);
 
       dispatch(turnOffLoaderActionCreator());
