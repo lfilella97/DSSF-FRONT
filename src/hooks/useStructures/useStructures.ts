@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import modal from "../../modals/modals";
 import { loadStructuresActionCreator } from "../../store/features/structures/structureSlice/structuresSlice";
 import { useAppDispatch } from "../../store/hooks";
@@ -6,7 +7,7 @@ import { StructuresApi } from "../../types";
 const useStructures = () => {
   const dispatch = useAppDispatch();
 
-  const getStructures = async () => {
+  const getStructures = useCallback(async () => {
     const path = "/structures";
 
     try {
@@ -24,7 +25,7 @@ const useStructures = () => {
     } catch (error) {
       modal("Ups, something went wrong");
     }
-  };
+  }, [dispatch]);
 
   return {
     getStructures,

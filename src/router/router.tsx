@@ -4,6 +4,7 @@ import Layout from "../components/Layout/Layout";
 import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import StructuresPage from "../pages/StructuresPage/StructuresPage";
 
 const routes: RouteObject[] = [
   {
@@ -16,8 +17,8 @@ const routes: RouteObject[] = [
     ),
     children: [
       {
-        path: "/home",
-        element: <></>,
+        path: "/",
+        element: <StructuresPage />,
       },
       {
         path: "/login",

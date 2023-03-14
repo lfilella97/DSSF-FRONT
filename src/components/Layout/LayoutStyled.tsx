@@ -32,7 +32,7 @@ const LayoutStyled = styled.div`
   }
 
   .content {
-    margin-top: 81px;
+    margin-top: 115px;
     width: 100%;
     padding: ${(props) => props.theme.padding.mainMobilePadding};
   }
