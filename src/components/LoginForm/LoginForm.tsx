@@ -7,10 +7,12 @@ import LoginFormStyled from "./LoginFormStyles";
 const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
 
-  const [userCredentials, setUserCredentials] = useState({
+  const initialState: UserCredentials = {
     userName: "",
     password: "",
-  } as UserCredentials);
+  };
+
+  const [userCredentials, setUserCredentials] = useState(initialState);
   let { password, userName } = userCredentials;
 
   const handleUsername = (event: React.FormEvent<HTMLInputElement>) => {
@@ -30,6 +32,8 @@ const LoginForm = (): JSX.Element => {
   const sendForm = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await loginUser(userCredentials);
+
+    setUserCredentials({ ...initialState });
   };
 
   return (
@@ -43,6 +47,7 @@ const LoginForm = (): JSX.Element => {
           onChange={handleUsername}
           className="form__field"
           type="userName"
+          value={userCredentials.userName}
           placeholder="Introduce user name"
           id="userName"
           name="userName"
@@ -56,6 +61,7 @@ const LoginForm = (): JSX.Element => {
           onChange={handlePassword}
           className="form__field"
           type="password"
+          value={userCredentials.password}
           placeholder="Introduce password"
           id="password"
           name="password"
