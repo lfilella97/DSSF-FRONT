@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithRouters from "../../testUtils/renderWithRuter";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import { UserState } from "../../types";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -11,9 +11,12 @@ describe("Given the component ProtectedRoute", () => {
 
       const loggedUser: UserState = { isLogged: false, token: "token" };
 
-      renderWithRouters(<ProtectedRoute children={containerWithText} />, {
-        user: loggedUser,
-      });
+      renderWithRoutersAndProviders(
+        <ProtectedRoute children={containerWithText} />,
+        {
+          user: loggedUser,
+        }
+      );
 
       const expectedRenderedText = screen.getByText(text);
 
@@ -28,9 +31,12 @@ describe("Given the component ProtectedRoute", () => {
 
       const user: UserState = { isLogged: false, token: "" };
 
-      renderWithRouters(<ProtectedRoute children={containerWithText} />, {
-        user,
-      });
+      renderWithRoutersAndProviders(
+        <ProtectedRoute children={containerWithText} />,
+        {
+          user,
+        }
+      );
 
       const expectedRenderedText = screen.queryByText(text);
 

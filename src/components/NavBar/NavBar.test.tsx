@@ -2,7 +2,7 @@ import { PreloadedState } from "@reduxjs/toolkit";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RootState } from "../../store/store";
-import renderWithRouters from "../../testUtils/renderWithRuter";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import NavBar from "./NavBar";
 
 describe("Given the component navBar", () => {
@@ -10,7 +10,7 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Home`", () => {
       const expectedHomeLink = "Home";
 
-      renderWithRouters(<NavBar />);
+      renderWithRoutersAndProviders(<NavBar />);
 
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
@@ -20,7 +20,7 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Map`", () => {
       const expectedMapLink = "Map";
 
-      renderWithRouters(<NavBar />);
+      renderWithRoutersAndProviders(<NavBar />);
 
       const mapLink = screen.getByRole("link", { name: expectedMapLink });
 
@@ -30,7 +30,7 @@ describe("Given the component navBar", () => {
     test("Then it should show a link with text `Login`", () => {
       const expectedButton = "Login";
 
-      renderWithRouters(<NavBar />);
+      renderWithRoutersAndProviders(<NavBar />);
 
       const loginLink = screen.getByRole("link", { name: expectedButton });
 
@@ -53,7 +53,10 @@ describe("Given the navBar with real router", () => {
         structures: [],
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(
+        false as unknown as React.ReactElement,
+        preloadState
+      );
       let homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
       await waitFor(async () => {
@@ -82,7 +85,10 @@ describe("Given the navBar with real router", () => {
         user: { isLogged: true, token: "token" },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(
+        false as unknown as React.ReactElement,
+        preloadState
+      );
 
       let addLink = screen.getByRole("link", { name: expectedAddLink });
 
@@ -112,7 +118,10 @@ describe("Given the navBar with real router", () => {
         user: { isLogged: true, token: "token" },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(
+        false as unknown as React.ReactElement,
+        preloadState
+      );
 
       const mapLink = screen.getByRole("link", { name: expectedMapLink });
 
@@ -143,7 +152,10 @@ describe("Given the navBar with real router", () => {
         user: { isLogged: true, token: "token" },
       };
 
-      renderWithRouters(false as unknown as React.ReactElement, preloadState);
+      renderWithRoutersAndProviders(
+        false as unknown as React.ReactElement,
+        preloadState
+      );
 
       const button = screen.getByRole("button", { name: expectedButton });
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
@@ -170,7 +182,7 @@ describe("Given the navBar with real router", () => {
       const expectedMapLink = "Map";
       const expectedLoginLink = "Login";
 
-      renderWithRouters();
+      renderWithRoutersAndProviders();
 
       const homeLink = screen.getByRole("link", { name: expectedHomeLink });
       const mapLink = screen.getByRole("link", { name: expectedMapLink });

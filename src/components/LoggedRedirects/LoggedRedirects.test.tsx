@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithRouters from "../../testUtils/renderWithRuter";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import { UserState } from "../../types";
 import LoggedRedirects from "./LoggedRedirects";
 
@@ -11,9 +11,12 @@ describe("Given the component LoggedRedirects", () => {
 
       const notLoggedUser: UserState = { isLogged: false, token: "" };
 
-      renderWithRouters(<LoggedRedirects children={containerWithText} />, {
-        user: notLoggedUser,
-      });
+      renderWithRoutersAndProviders(
+        <LoggedRedirects children={containerWithText} />,
+        {
+          user: notLoggedUser,
+        }
+      );
 
       const expectedRenderedText = screen.getByText(text);
 
@@ -28,9 +31,12 @@ describe("Given the component LoggedRedirects", () => {
 
       const user: UserState = { isLogged: true, token: "token" };
 
-      renderWithRouters(<LoggedRedirects children={containerWithText} />, {
-        user,
-      });
+      renderWithRoutersAndProviders(
+        <LoggedRedirects children={containerWithText} />,
+        {
+          user,
+        }
+      );
 
       const expectedRenderedText = screen.queryByText(text);
 

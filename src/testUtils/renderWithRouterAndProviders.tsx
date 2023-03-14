@@ -16,7 +16,7 @@ const getComponentRouter = (Ui: JSX.Element) =>
     },
   ]);
 
-const renderWithRouters = (
+const renderWithRoutersAndProviders = (
   ui?: React.ReactElement,
   preloadedState?: PreloadedState<RootState>
 ) => {
@@ -28,4 +28,4 @@ const renderWithRouters = (
   );
 };
 
-export default renderWithRouters;
+export default renderWithRoutersAndProviders;

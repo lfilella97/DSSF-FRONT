@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithRouters from "../../testUtils/renderWithRuter";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import Layout from "./Layout";
 
 describe("Given the Layout component", () => {
@@ -7,7 +7,7 @@ describe("Given the Layout component", () => {
     test("Then it should show a header with a logo with an alt text 'Dry stone structure finder logo'", () => {
       const expectedAltText = "Dry stone structure finder logo";
 
-      renderWithRouters(<Layout />);
+      renderWithRoutersAndProviders(<Layout />);
 
       const imageWithAltText = screen.getByRole("img");
 
@@ -20,7 +20,7 @@ describe("Given the Layout component", () => {
       const expectedAltText = "This page is loading...";
       const loadingState = { ui: { isLoading: true, modals: [] } };
 
-      renderWithRouters(<Layout />, loadingState);
+      renderWithRoutersAndProviders(<Layout />, loadingState);
 
       const renderedLoader = screen.getByLabelText(expectedAltText);
 
