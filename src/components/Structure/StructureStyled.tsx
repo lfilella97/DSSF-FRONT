@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StructureStyled = styled.article`
-  width: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   border-radius: ${(props) => props.theme.border.borderRadiusXL};
@@ -10,12 +10,16 @@ const StructureStyled = styled.article`
 
   .structure {
     &__wrap {
+      width: 100%;
+
       background-color: ${(props) => props.theme.colour.white};
       border-radius: ${(props) => props.theme.border.borderRadiusXL};
       padding: 15px;
     }
 
     &__image {
+      width: 100%;
+      object-fit: cover;
       border-radius: ${(props) => props.theme.border.borderRadiusXL};
     }
 
