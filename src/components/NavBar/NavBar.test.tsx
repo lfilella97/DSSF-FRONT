@@ -2,7 +2,7 @@ import { PreloadedState } from "@reduxjs/toolkit";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RootState } from "../../store/store";
-import renderWithRouters from "../../testUtil/renderWithRuter";
+import renderWithRouters from "../../testUtils/renderWithRuter";
 import NavBar from "./NavBar";
 
 describe("Given the component navBar", () => {
