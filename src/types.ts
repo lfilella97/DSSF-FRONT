@@ -27,6 +27,9 @@ export interface Structure {
   elevation: string;
   creationTime: string;
   description: string;
+  location: string;
+  image: string;
+  id: string;
 }
 
 export type Structures = Structure[];
@@ -34,3 +37,8 @@ export type Structures = Structure[];
 export interface StructuresApi {
   structures: Structures;
 }
+
+export type StructureCard = Pick<
+  Structure,
+  "elevation" | "type" | "id" | "image" | "name" | "location"
+>;

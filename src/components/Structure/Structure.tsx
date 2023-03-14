@@ -32,7 +32,7 @@ const Structure = ({
             <span>{elevation} meters</span>
           </li>
           <li>
-            <FontAwesomeIcon name="elevation" icon={solid("water")} />
+            <FontAwesomeIcon name="elevation" icon={solid("layer-group")} />
             <span>{type}</span>
           </li>
           <li>
