@@ -18,6 +18,7 @@ const Structure = ({
   return (
     <StructureStyled className="structure">
       <div className="structure__wrap">
+        <link rel="preload" href={image} as="image" />
         <img
           className="structure__image"
           width={268}
