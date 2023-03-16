@@ -23,11 +23,11 @@ const Structure = ({
     user: { isLogged },
   } = useAppSelector((state) => state);
 
-  const { deleteStructures } = useStructures();
+  const { deleteStructure } = useStructures();
 
   return (
     <StructureStyled className="structure">
-      <div className="structure__wrap">
+      <NavLink to={`/structure/${id}`} className="structure__wrap">
         <link rel="preload" href={image} as="image" />
         <img
           className="structure__image"
@@ -51,14 +51,14 @@ const Structure = ({
             <span>{location}</span>
           </li>
         </ul>
-      </div>
+      </NavLink>
 
       {isLogged && (
         <span className="structure__buttons">
           <NavLink aria-label="modify" to={`structure/edit/${name}/${id}`}>
             <FontAwesomeIcon name="elevation" icon={solid("edit")} />
           </NavLink>
-          <button aria-label="delete" onClick={() => deleteStructures(id)}>
+          <button aria-label="delete" onClick={() => deleteStructure(id)}>
             <FontAwesomeIcon name="elevation" icon={solid("trash")} />
           </button>
         </span>

@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithProviders from "../../testUtils/renderWithProviders";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import { Structure } from "../../types";
 import StructuresPage from "./StructuresPage";
 
@@ -20,7 +20,12 @@ describe("Given the Structure page", () => {
         image:
           "https://sfxfnjejlztsnoxyochi.supabase.co/storage/v1/object/public/structures/Aljub%20del%20mas%20de%20Roer.jpg",
       };
-      renderWithProviders(<StructuresPage />, { structures: [initialState] });
+      renderWithRoutersAndProviders({
+        ui: <StructuresPage />,
+        preloadedState: {
+          structures: [initialState],
+        },
+      });
 
       const renderedHeading = screen.getByRole("heading", {
         name: "Bassa del mas de Roer",
