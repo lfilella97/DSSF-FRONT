@@ -3,6 +3,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import StructureStyled from "./StructureStyled";
 import { useAppSelector } from "../../store/hooks";
 import { NavLink } from "react-router-dom";
+import useStructures from "../../hooks/useStructures/useStructures";
 
 interface StructureProps {
   structure: {
@@ -21,9 +22,12 @@ const Structure = ({
   const {
     user: { isLogged },
   } = useAppSelector((state) => state);
+
+  const { deleteStructure } = useStructures();
+
   return (
     <StructureStyled className="structure">
-      <div className="structure__wrap">
+      <NavLink to={`/structure/${id}`} className="structure__wrap">
         <link rel="preload" href={image} as="image" />
         <img
           className="structure__image"
@@ -47,14 +51,14 @@ const Structure = ({
             <span>{location}</span>
           </li>
         </ul>
-      </div>
+      </NavLink>
 
       {isLogged && (
         <span className="structure__buttons">
           <NavLink aria-label="modify" to={`structure/edit/${name}/${id}`}>
             <FontAwesomeIcon name="elevation" icon={solid("edit")} />
           </NavLink>
-          <button aria-label="delete">
+          <button aria-label="delete" onClick={() => deleteStructure(id)}>
             <FontAwesomeIcon name="elevation" icon={solid("trash")} />
           </button>
         </span>

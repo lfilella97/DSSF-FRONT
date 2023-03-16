@@ -8,6 +8,9 @@ export type User = Pick<UserState, "token">;
 export interface ErrorResponse {
   error: string;
 }
+
+export type ApiUser = User | ErrorResponse;
+
 export interface UserCredentials {
   userName: string;
   password: string;
@@ -42,3 +45,9 @@ export type StructureCard = Pick<
   Structure,
   "elevation" | "type" | "id" | "image" | "name" | "location"
 >;
+
+export interface DeletedResponse {
+  deleted: string;
+}
+
+export type ApiStructures = ErrorResponse | DeletedResponse;

@@ -48,6 +48,7 @@ button, input  {
 }
 
 button {
+  cursor: pointer;
   padding: 0;
   border: none;
   color: inherit;

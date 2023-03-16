@@ -23,6 +23,17 @@ export const handlers = [
       );
     }
   ),
+  rest.delete(
+    `${process.env.REACT_APP_URL_API}/structures/123456789`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          deleted: "Aljub SN08",
+        })
+      );
+    }
+  ),
 ];
 
 export const errorHandlers = [
@@ -44,6 +55,17 @@ export const errorHandlers = [
         ctx.status(401),
         ctx.json({
           error: "Wrong credentials",
+        })
+      );
+    }
+  ),
+  rest.delete(
+    `${process.env.REACT_APP_URL_API}/structures/123456789`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(498),
+        ctx.json({
+          error: "Can't delete",
         })
       );
     }

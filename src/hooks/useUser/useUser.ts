@@ -3,7 +3,7 @@ import {
   logOutUserActionCreator,
 } from "../../store/features/users/userSlice/userSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { ErrorResponse, User, UserCredentials } from "../../types";
+import { ApiUser, ErrorResponse, User, UserCredentials } from "../../types";
 import { useCallback } from "react";
 import modal from "../../modals/modals";
 import {
@@ -11,7 +11,13 @@ import {
   turnOnLoaderActionCreator,
 } from "../../store/features/ui/uiSlice/uiSlice";
 
-const useUser = () => {
+interface UseUser {
+  loginUser: (userCredentials: UserCredentials) => Promise<void>;
+  logOutUser: () => void;
+  checkStorageToken: () => void;
+}
+
+const useUser = (): UseUser => {
   const dispatch = useAppDispatch();
 
   const loginUser = async (userCredentials: UserCredentials) => {
@@ -29,18 +35,17 @@ const useUser = () => {
         }
       );
 
-      const user: User = await response.json();
+      const apiResponse: ApiUser = await response.json();
 
       if (!response.ok) {
-        const { error } = user as unknown as ErrorResponse;
+        const { error } = apiResponse as ErrorResponse;
         throw new Error(error);
       }
 
-      localStorage.setItem("token", user.token);
+      localStorage.setItem("token", (apiResponse as User).token);
 
       dispatch(turnOffLoaderActionCreator());
-
-      dispatch(loginUserActionCreator(user));
+      dispatch(loginUserActionCreator(apiResponse as User));
     } catch (error) {
       dispatch(turnOffLoaderActionCreator());
       modal((error as Error).message, "error");
@@ -53,7 +58,7 @@ const useUser = () => {
     dispatch(logOutUserActionCreator());
   };
 
-  const getStorageToken = useCallback(() => {
+  const checkStorageToken = useCallback(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       return;
@@ -62,7 +67,7 @@ const useUser = () => {
     dispatch(loginUserActionCreator({ token }));
   }, [dispatch]);
 
-  return { loginUser, logOutUser, checkStorageToken: getStorageToken };
+  return { loginUser, logOutUser, checkStorageToken };
 };
 
 export default useUser;

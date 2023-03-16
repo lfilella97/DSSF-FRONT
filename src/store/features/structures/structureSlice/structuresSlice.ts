@@ -10,9 +10,18 @@ const structuresSlice = createSlice({
       currentState: Structures,
       action: PayloadAction<Structures>
     ): Structures => [...action.payload],
+
+    deleteStructure: (
+      currentState,
+      action: PayloadAction<string>
+    ): Structures => [
+      ...currentState.filter((structure) => structure.id !== action.payload),
+    ],
   },
 });
 
-export const { loadStructures: loadStructuresActionCreator } =
-  structuresSlice.actions;
+export const {
+  loadStructures: loadStructuresActionCreator,
+  deleteStructure: deletedStructureActionCreator,
+} = structuresSlice.actions;
 export const structuresReducer = structuresSlice.reducer;
