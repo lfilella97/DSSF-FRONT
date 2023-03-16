@@ -8,7 +8,11 @@ import {
   turnOnLoaderActionCreator,
 } from "../../store/features/ui/uiSlice/uiSlice";
 
-const useStructures = () => {
+interface UseStrucutres {
+  getStructures: () => Promise<void>;
+}
+
+const useStructures = (): UseStrucutres => {
   const dispatch = useAppDispatch();
 
   const getStructures = useCallback(async () => {
@@ -24,7 +28,9 @@ const useStructures = () => {
       }
 
       const { structures }: StructuresApi = await response.json();
+
       dispatch(turnOffLoaderActionCreator());
+
       dispatch(loadStructuresActionCreator(structures));
     } catch (error) {
       dispatch(turnOffLoaderActionCreator());

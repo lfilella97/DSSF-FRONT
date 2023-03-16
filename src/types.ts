@@ -8,6 +8,9 @@ export type User = Pick<UserState, "token">;
 export interface ErrorResponse {
   error: string;
 }
+
+export type ApiUser = User | ErrorResponse;
+
 export interface UserCredentials {
   userName: string;
   password: string;

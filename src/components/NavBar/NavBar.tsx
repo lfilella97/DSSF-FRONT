@@ -13,7 +13,7 @@ const NavBar = (): JSX.Element => {
   return (
     <NavBarStyled className="navbar">
       <li className="navbar__container">
-        <NavLink className={`navbar__text`} to="/">
+        <NavLink className={`navbar__text`} to="/home">
           {" "}
           Home{" "}
         </NavLink>
