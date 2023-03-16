@@ -1,8 +1,16 @@
 import { useCallback } from "react";
 import modal from "../../modals/modals";
-import { loadStructuresActionCreator } from "../../store/features/structures/structureSlice/structuresSlice";
-import { useAppDispatch } from "../../store/hooks";
-import { StructuresApi } from "../../types";
+import {
+  deletedStructureActionCreator,
+  loadStructuresActionCreator,
+} from "../../store/features/structures/structureSlice/structuresSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  ApiStructures,
+  DeletedResponse,
+  ErrorResponse,
+  StructuresApi,
+} from "../../types";
 import {
   turnOffLoaderActionCreator,
   turnOnLoaderActionCreator,
@@ -10,17 +18,21 @@ import {
 
 interface UseStrucutres {
   getStructures: () => Promise<void>;
+  deleteStructure: (id: string) => void;
 }
 
 const useStructures = (): UseStrucutres => {
   const dispatch = useAppDispatch();
+  const {
+    user: { token },
+  } = useAppSelector((store) => store);
 
   const getStructures = useCallback(async () => {
-    const path = "/structures";
     dispatch(turnOnLoaderActionCreator());
+    const structuresPath = "/structures";
     try {
       const response: Response = await fetch(
-        `${process.env.REACT_APP_URL_API}${path}`!
+        `${process.env.REACT_APP_URL_API!}${structuresPath}`
       );
 
       if (!response.ok) {
@@ -28,18 +40,46 @@ const useStructures = (): UseStrucutres => {
       }
 
       const { structures }: StructuresApi = await response.json();
-
       dispatch(turnOffLoaderActionCreator());
 
       dispatch(loadStructuresActionCreator(structures));
     } catch (error) {
       dispatch(turnOffLoaderActionCreator());
-      modal("Ups, something went wrong");
+      modal("Ups, something went wrong", "error");
     }
   }, [dispatch]);
 
+  const deleteStructure = async (id: string) => {
+    const structuresPath = "/structures";
+
+    try {
+      const response: Response = await fetch(
+        `${process.env.REACT_APP_URL_API!}${structuresPath}/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token} `,
+          },
+        }
+      );
+
+      const apiStructures: ApiStructures = await response.json();
+
+      if (!response.ok) {
+        throw new Error((apiStructures as ErrorResponse).error);
+      }
+
+      dispatch(deletedStructureActionCreator(id));
+      modal(`Deleted ${(apiStructures as DeletedResponse).deleted}`);
+    } catch (error) {
+      modal((error as Error).message, "error");
+    }
+  };
+
   return {
     getStructures,
+    deleteStructure,
   };
 };
 

@@ -45,3 +45,9 @@ export type StructureCard = Pick<
   Structure,
   "elevation" | "type" | "id" | "image" | "name" | "location"
 >;
+
+export interface DeletedResponse {
+  deleted: string;
+}
+
+export type ApiStructures = ErrorResponse | DeletedResponse;
