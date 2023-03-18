@@ -73,7 +73,7 @@ const useStructures = (): UseStrucutres => {
       dispatch(deletedStructureActionCreator(id));
       modal(`Deleted ${(apiStructures as DeletedResponse).deleted}`);
     } catch (error) {
-      modal((error as Error).message, "error");
+      modal("Ups, something went wrong", "error");
     }
   };
 
