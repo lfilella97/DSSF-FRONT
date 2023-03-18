@@ -51,3 +51,12 @@ export interface DeletedResponse {
 }
 
 export type ApiStructures = ErrorResponse | DeletedResponse;
+
+export interface StructureFormData {
+  name: string;
+  type: string;
+  location: string;
+  image: File | null;
+  description: string;
+  elevation: number;
+}
