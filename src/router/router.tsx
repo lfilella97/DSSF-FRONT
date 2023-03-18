@@ -37,7 +37,6 @@ const routes: RouteObject[] = [
         path: "/add-new-structure",
         element: (
           <ProtectedRoute>
-            {" "}
             <></>
           </ProtectedRoute>
         ),
