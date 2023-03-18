@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoginFormStyled = styled.form`
+const CreateFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,4 +61,4 @@ const LoginFormStyled = styled.form`
   }
 `;
 
-export default LoginFormStyled;
+export default CreateFormStyled;
