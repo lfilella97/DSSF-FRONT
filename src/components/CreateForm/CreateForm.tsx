@@ -40,9 +40,10 @@ const CreateForm = (): JSX.Element => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { id } = jwt_decode(token) as CustomJwtPayload;
+    const { id }: CustomJwtPayload = jwt_decode(token);
 
     const newStructure = new FormData(event.currentTarget);
+
     newStructure.append("creationTime", `${Date.now()}`);
     newStructure.append("owner", id);
 
@@ -121,7 +122,6 @@ const CreateForm = (): JSX.Element => {
           placeholder="Introduce structure image"
           id="image"
           name="image"
-          required
         />
 
         <label className="form__text" htmlFor="description">

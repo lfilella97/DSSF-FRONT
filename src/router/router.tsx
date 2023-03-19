@@ -1,6 +1,5 @@
 import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
 import App from "../App";
-import CreateForm from "../components/CreateForm/CreateForm";
 import Layout from "../components/Layout/Layout";
 import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
@@ -38,7 +37,7 @@ const routes: RouteObject[] = [
         path: "/add-new-structure",
         element: (
           <ProtectedRoute>
-            <CreateForm />
+            <></>
           </ProtectedRoute>
         ),
       },
