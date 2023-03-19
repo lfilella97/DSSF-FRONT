@@ -6,7 +6,8 @@ const LoadingStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
+  top: 0;
   background-color: #132a1383;
   z-index: 1;
 
@@ -20,7 +21,7 @@ const LoadingStyled = styled.div`
     animation: layers1 1s linear infinite alternate;
   }
   .loader:after {
-    content: "";
+    content: "DDSF";
     position: absolute;
     inset: 0;
     background: rgba(220, 220, 220, 0.8);

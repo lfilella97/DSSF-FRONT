@@ -3,6 +3,7 @@ import App from "../App";
 import Layout from "../components/Layout/Layout";
 import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import CreateStructurePage from "../pages/CreateStructurePage/CreateStructurePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import StructuresPage from "../pages/StructuresPage/StructuresPage";
 
@@ -37,7 +38,7 @@ const routes: RouteObject[] = [
         path: "/add-new-structure",
         element: (
           <ProtectedRoute>
-            <></>
+            <CreateStructurePage />
           </ProtectedRoute>
         ),
       },
