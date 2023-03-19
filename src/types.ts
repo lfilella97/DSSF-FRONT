@@ -61,5 +61,11 @@ export interface StructureFormData
     Structure,
     "description" | "elevation" | "name" | "type" | "location"
   > {
-  image: File;
+  image: File | null;
+}
+
+export interface CustomJwtPayload {
+  id: string;
+  userName: string;
+  isAdmin?: boolean;
 }

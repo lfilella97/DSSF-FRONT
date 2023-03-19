@@ -1,18 +1,67 @@
+import { useState } from "react";
+import useStructures from "../../hooks/useStructures/useStructures";
+import { CustomJwtPayload, StructureFormData } from "../../types";
 import Button from "../Button/Button";
+import CreateFormStyled from "./CreateFormStyled";
+import jwt_decode from "jwt-decode";
+import { useAppSelector } from "../../store/hooks";
 
 const CreateForm = (): JSX.Element => {
+  const {
+    user: { token },
+  } = useAppSelector((state) => state);
+  const { createStructure } = useStructures();
+
+  const initialState: StructureFormData = {
+    name: "",
+    type: "",
+    description: "",
+    image: null,
+    location: "",
+    elevation: "0",
+  };
+
+  const [formData, setFormData] = useState(initialState);
+
+  const handleInputChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, files } = event.target;
+    setFormData({ ...formData, [name]: files?.[0] });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const { id }: CustomJwtPayload = jwt_decode(token);
+
+    const newStructure = new FormData(event.currentTarget);
+
+    newStructure.append("creationTime", `${Date.now()}`);
+    newStructure.append("owner", id);
+
+    createStructure(newStructure);
+  };
+
   return (
-    <form className="form" onSubmit={() => {}}>
+    <CreateFormStyled className="form" onSubmit={handleSubmit}>
       <div className="form__fields">
         <h2 className="form__title">Add new structure</h2>
         <label className="form__text" htmlFor="name">
           Name:
         </label>
         <input
-          onChange={() => {}}
+          onChange={handleInputChange}
           className="form__field"
           type="name"
-          value={""}
+          value={formData.name}
           placeholder="Introduce structure name"
           id="name"
           name="name"
@@ -23,10 +72,10 @@ const CreateForm = (): JSX.Element => {
           Type:
         </label>
         <select
-          onChange={() => {}}
+          onChange={handleInputChange}
           className="form__field"
           placeholder="Introduce selector"
-          value={""}
+          value={formData.type}
           id="selector"
           name="type"
           required
@@ -40,10 +89,10 @@ const CreateForm = (): JSX.Element => {
           Location:
         </label>
         <input
-          onChange={() => {}}
+          onChange={handleInputChange}
           className="form__field"
           type="text"
-          value={""}
+          value={formData.location}
           placeholder="Introduce structure location"
           id="location"
           name="location"
@@ -54,10 +103,10 @@ const CreateForm = (): JSX.Element => {
           Elevation:
         </label>
         <input
-          onChange={() => {}}
+          onChange={handleInputChange}
           className="form__field"
           type="number"
-          value={""}
+          value={formData.elevation}
           placeholder="Introduce structure elevation"
           id="elevation"
           name="elevation"
@@ -67,22 +116,21 @@ const CreateForm = (): JSX.Element => {
           Image:
         </label>
         <input
-          onChange={() => {}}
+          onChange={handleImageChange}
           className="form__field"
           type="file"
           placeholder="Introduce structure image"
           id="image"
           name="image"
-          required
         />
 
         <label className="form__text" htmlFor="description">
           Description:
         </label>
         <textarea
-          onChange={() => {}}
+          onChange={handleInputChange}
           className="form__field"
-          value={""}
+          value={formData.description}
           placeholder="Introduce structure description"
           id="description"
           name="description"
@@ -90,7 +138,7 @@ const CreateForm = (): JSX.Element => {
       </div>
 
       <Button type="submit" text="Create" className="form__button" />
-    </form>
+    </CreateFormStyled>
   );
 };
 

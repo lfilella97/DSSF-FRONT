@@ -36,18 +36,6 @@ export const handlers = [
       );
     }
   ),
-
-  rest.post(
-    `${process.env.REACT_APP_URL_API}/structures/create`,
-    async (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        ctx.json({
-          created: "Aljub SN08",
-        })
-      );
-    }
-  ),
 ];
 
 export const errorHandlers = [
@@ -82,18 +70,6 @@ export const errorHandlers = [
         ctx.status(498),
         ctx.json({
           error: "Can't delete",
-        })
-      );
-    }
-  ),
-
-  rest.post(
-    `${process.env.REACT_APP_URL_API}/structures/create`,
-    async (req, res, ctx) => {
-      return res(
-        ctx.status(400),
-        ctx.json({
-          message: "can't create",
         })
       );
     }

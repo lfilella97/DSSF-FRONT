@@ -6,7 +6,6 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   ApiStructures,
-  CreatedResponse,
   DeletedResponse,
   ErrorResponse,
   StructuresApi,
@@ -53,7 +52,6 @@ const useStructures = (): UseStrucutres => {
 
   const deleteStructure = async (id: string) => {
     const structuresPath = "/structures";
-
     try {
       const response: Response = await fetch(
         `${process.env.REACT_APP_URL_API!}${structuresPath}/${id}`,
@@ -84,27 +82,24 @@ const useStructures = (): UseStrucutres => {
 
     try {
       dispatch(turnOnLoaderActionCreator());
+
       const response: Response = await fetch(
         `${process.env.REACT_APP_URL_API!}${structuresCreatePath}`,
 
         {
           method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token} `,
           },
-          body: { ...formData },
+          body: formData,
         }
       );
 
-      const apiStructures: ApiStructures = await response.json();
-
-      if (!response.ok) {
-        throw new Error((apiStructures as ErrorResponse).error);
-      }
-
-      modal(` ${(apiStructures as CreatedResponse).message}`);
       dispatch(turnOffLoaderActionCreator());
+
+      modal(`Created succesfully`);
+
+      await response.json();
     } catch (error) {
       modal("Ups, something went wrong", "error");
       dispatch(turnOffLoaderActionCreator());
