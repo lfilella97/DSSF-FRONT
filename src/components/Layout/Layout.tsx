@@ -35,10 +35,10 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
       </header>
       <NavBar />
       <main className="content">
-        <ToastContainer className="modal" />
         {children}
         <Outlet />
       </main>
+      <ToastContainer className="modal" />
     </LayoutStyled>
   );
 };
