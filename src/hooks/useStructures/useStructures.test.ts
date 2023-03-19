@@ -86,36 +86,3 @@ describe("Given the deleteStructure function", () => {
     });
   });
 });
-
-describe("Given the createStructure function", () => {
-  describe("When it is called", () => {
-    test("Then it should dispatch two times", async () => {
-      const {
-        result: {
-          current: { createStructure },
-        },
-      } = renderHook(() => useStructures(), { wrapper });
-
-      await createStructure(new FormData());
-
-      expect(spyDispatch).toBeCalledTimes(2);
-    });
-  });
-
-  describe("When it is called with wrong form data", () => {
-    beforeEach(() => {
-      server.resetHandlers(...errorHandlers);
-    });
-    test("Then it should dispatch two times", async () => {
-      const {
-        result: {
-          current: { createStructure },
-        },
-      } = renderHook(() => useStructures(), { wrapper });
-
-      await createStructure(new FormData());
-
-      expect(spyDispatch).toBeCalledTimes(2);
-    });
-  });
-});

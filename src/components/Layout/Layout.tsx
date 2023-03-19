@@ -23,8 +23,6 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
     <LayoutStyled>
       {isLoading && <Loading />}
       <header className="header">
-        <link rel="preconnect" href={process.env.REACT_APP_URL_API} />
-        <link rel="preconnect" href={process.env.REACT_APP_URL_IMAGES} />
         <link rel="preload" href="/images/DSSF-logo.svg" as="image" />
 
         <img
