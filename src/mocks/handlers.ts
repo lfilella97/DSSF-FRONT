@@ -12,6 +12,7 @@ export const handlers = [
       );
     }
   ),
+
   rest.get(
     `${process.env.REACT_APP_URL_API}/structures`,
     async (req, res, ctx) => {
@@ -23,6 +24,7 @@ export const handlers = [
       );
     }
   ),
+
   rest.delete(
     `${process.env.REACT_APP_URL_API}/structures/123456789`,
     async (req, res, ctx) => {
@@ -30,6 +32,18 @@ export const handlers = [
         ctx.status(200),
         ctx.json({
           deleted: "Aljub SN08",
+        })
+      );
+    }
+  ),
+
+  rest.post(
+    `${process.env.REACT_APP_URL_API}/structures/create`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          created: "Aljub SN08",
         })
       );
     }
@@ -48,6 +62,7 @@ export const errorHandlers = [
       );
     }
   ),
+
   rest.post(
     `${process.env.REACT_APP_URL_API}/user/login`,
     async (req, res, ctx) => {
@@ -59,6 +74,7 @@ export const errorHandlers = [
       );
     }
   ),
+
   rest.delete(
     `${process.env.REACT_APP_URL_API}/structures/123456789`,
     async (req, res, ctx) => {
@@ -66,6 +82,18 @@ export const errorHandlers = [
         ctx.status(498),
         ctx.json({
           error: "Can't delete",
+        })
+      );
+    }
+  ),
+
+  rest.post(
+    `${process.env.REACT_APP_URL_API}/structures/create`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(400),
+        ctx.json({
+          message: "can't create",
         })
       );
     }

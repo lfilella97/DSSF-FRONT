@@ -18,7 +18,7 @@ export interface UserCredentials {
 
 export interface UiState {
   isLoading: boolean;
-  modals: string[];
+  modals: [];
 }
 
 export interface Structure {
@@ -50,4 +50,16 @@ export interface DeletedResponse {
   deleted: string;
 }
 
-export type ApiStructures = ErrorResponse | DeletedResponse;
+export interface CreatedResponse {
+  message: string;
+}
+
+export type ApiStructures = ErrorResponse | DeletedResponse | CreatedResponse;
+
+export interface StructureFormData
+  extends Pick<
+    Structure,
+    "description" | "elevation" | "name" | "type" | "location"
+  > {
+  image: File;
+}

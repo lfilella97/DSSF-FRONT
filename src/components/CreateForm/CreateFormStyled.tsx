@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const LoginFormStyled = styled.form`
+const CreateFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@ const LoginFormStyled = styled.form`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 350px;
+      height: 100%;
       width: 100%;
     }
 
@@ -21,17 +21,20 @@ const LoginFormStyled = styled.form`
       font-size: ${(props) => props.theme.fonts.titleFontSizeXL};
       padding: ${(props) => props.theme.padding.mainMobilePadding} 0;
       font-weight: 800;
+      margin-bottom: 20px;
     }
 
     &__text {
       font-size: ${(props) => props.theme.fonts.textFontSizeL};
       display: block;
+      margin-bottom: 10px;
     }
 
     &__field {
       font-size: ${(props) => props.theme.fonts.textFontSizeL};
       border-radius: ${(props) => props.theme.border.borderRadiusLarge};
       padding: ${(props) => props.theme.padding.mainMobilePadding};
+      margin-bottom: 20px;
     }
 
     &__button {
@@ -58,4 +61,4 @@ const LoginFormStyled = styled.form`
   }
 `;
 
-export default LoginFormStyled;
+export default CreateFormStyled;
