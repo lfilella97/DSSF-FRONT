@@ -48,6 +48,8 @@ const CreateForm = (): JSX.Element => {
     newStructure.append("owner", id);
 
     createStructure(newStructure);
+    setFormData({ ...initialState });
+    window.scroll({ top: 0 });
   };
 
   return (
