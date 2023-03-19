@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-import modal from "../../modals/modals";
 import {
   deletedStructureActionCreator,
   loadStructuresActionCreator,
@@ -7,6 +6,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   ApiStructures,
+  CreatedResponse,
   DeletedResponse,
   ErrorResponse,
   StructuresApi,
@@ -15,10 +15,12 @@ import {
   turnOffLoaderActionCreator,
   turnOnLoaderActionCreator,
 } from "../../store/features/ui/uiSlice/uiSlice";
+import modal from "../../modals/modals";
 
 interface UseStrucutres {
   getStructures: () => Promise<void>;
   deleteStructure: (id: string) => void;
+  createStructure: (structure: FormData) => Promise<void>;
 }
 
 const useStructures = (): UseStrucutres => {
@@ -77,9 +79,42 @@ const useStructures = (): UseStrucutres => {
     }
   };
 
+  const createStructure = async (formData: FormData) => {
+    const structuresCreatePath = "/structures/create";
+
+    try {
+      dispatch(turnOnLoaderActionCreator());
+      const response: Response = await fetch(
+        `${process.env.REACT_APP_URL_API!}${structuresCreatePath}`,
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token} `,
+          },
+          body: { ...formData },
+        }
+      );
+
+      const apiStructures: ApiStructures = await response.json();
+
+      if (!response.ok) {
+        throw new Error((apiStructures as ErrorResponse).error);
+      }
+
+      modal(` ${(apiStructures as CreatedResponse).message}`);
+      dispatch(turnOffLoaderActionCreator());
+    } catch (error) {
+      modal("Ups, something went wrong", "error");
+      dispatch(turnOffLoaderActionCreator());
+    }
+  };
+
   return {
     getStructures,
     deleteStructure,
+    createStructure,
   };
 };
 
