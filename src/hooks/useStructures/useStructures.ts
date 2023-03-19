@@ -8,6 +8,7 @@ import {
   ApiStructures,
   DeletedResponse,
   ErrorResponse,
+  Structure,
   StructuresApi,
 } from "../../types";
 import {
@@ -20,6 +21,7 @@ interface UseStrucutres {
   getStructures: () => Promise<void>;
   deleteStructure: (id: string) => void;
   createStructure: (structure: FormData) => Promise<void>;
+  getStructure: (id: string) => void;
 }
 
 const useStructures = (): UseStrucutres => {
@@ -106,10 +108,35 @@ const useStructures = (): UseStrucutres => {
     }
   };
 
+  const getStructure = useCallback(
+    async (id: string) => {
+      const structuresPath = "/structures";
+      dispatch(turnOnLoaderActionCreator());
+      try {
+        const response: Response = await fetch(
+          `${process.env.REACT_APP_URL_API!}${structuresPath}/${id}`
+        );
+
+        const apiStructures: ApiStructures = await response.json();
+
+        if (!response.ok) {
+          throw new Error((apiStructures as ErrorResponse).error);
+        }
+
+        dispatch(loadStructuresActionCreator([apiStructures as Structure]));
+        dispatch(turnOffLoaderActionCreator());
+      } catch (error) {
+        modal("Ups, something went wrong", "error");
+      }
+    },
+    [dispatch]
+  );
+
   return {
     getStructures,
     deleteStructure,
     createStructure,
+    getStructure,
   };
 };
 

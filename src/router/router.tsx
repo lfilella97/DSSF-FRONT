@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, RouteObject } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../App";
 import Layout from "../components/Layout/Layout";
 import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
@@ -19,7 +19,7 @@ const routes: RouteObject[] = [
     children: [
       {
         path: "/",
-        element: <Navigate to={"/home"} />,
+        element: <StructuresPage />,
       },
       { path: "/home", element: <StructuresPage /> },
       {

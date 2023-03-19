@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.min.css";
 import { toast } from "react-toastify";
 
 const modal = (message: string, type?: string) => {
