@@ -66,11 +66,12 @@ describe("Given the navBar with real router", () => {
           structures: [],
         },
       };
+      let homeLink;
 
       renderWithRoutersAndProviders(routerAndState);
-      let homeLink = screen.getByRole("link", { name: expectedHomeLink });
 
       await waitFor(async () => {
+        homeLink = screen.getByRole("link", { name: expectedHomeLink });
         await userEvent.click(homeLink);
       });
 

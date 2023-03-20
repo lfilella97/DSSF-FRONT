@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import useUser from "../../hooks/useUser/useUser";
@@ -7,7 +7,7 @@ import Loading from "../Loading/Loading";
 import NavBar from "../NavBar/NavBar";
 import LayoutStyled from "./LayoutStyled";
 
-const Layout = ({ children }: PropsWithChildren): JSX.Element => {
+const Layout = (): JSX.Element => {
   const { checkStorageToken } = useUser();
 
   const {
@@ -21,7 +21,6 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
   return (
     <LayoutStyled>
       {isLoading && <Loading />}
-
       <header className="header">
         <img
           className="header__logo"
@@ -33,8 +32,9 @@ const Layout = ({ children }: PropsWithChildren): JSX.Element => {
       </header>
       <NavBar />
       <main className="content">
-        {children}
-        <Outlet />
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
       </main>
       <ToastContainer className="modal" />
     </LayoutStyled>
