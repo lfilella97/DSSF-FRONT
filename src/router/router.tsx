@@ -1,22 +1,25 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import App from "../App";
-import Layout from "../components/Layout/Layout";
-import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
-import CreateStructurePage from "../pages/CreateStructurePage/CreateStructurePage";
-import DetailPage from "../pages/DetailPage/DetailPage";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import StructuresPage from "../pages/StructuresPage/StructuresPage";
+import { lazy } from "react";
+
+const StructuresPage = lazy(
+  () => import("../pages/StructuresPage/StructuresPage")
+);
+const App = lazy(() => import("../App"));
+const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
+const CreateStructurePage = lazy(
+  () => import("../pages/CreateStructurePage/CreateStructurePage")
+);
+const LoggedRedirects = lazy(
+  () => import("../components/LoggedRedirects/LoggedRedirects")
+);
+const ProtectedRoute = lazy(
+  () => import("../components/ProtectedRoute/ProtectedRoute")
+);
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,
-    errorElement: (
-      <Layout>
-        <div className="not-found">404 Page not found</div>
-      </Layout>
-    ),
     children: [
       {
         path: "/",
@@ -32,12 +35,8 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: "/map",
-        element: <></>,
-      },
-      {
-        path: "/structure/:id",
-        element: <DetailPage></DetailPage>,
+        path: "/*",
+        element: <div className="not-found">404 Page not found</div>,
       },
       {
         path: "/add-new-structure",
