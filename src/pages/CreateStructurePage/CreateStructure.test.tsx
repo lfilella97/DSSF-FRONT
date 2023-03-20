@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithProviders from "../../testUtils/renderWithProviders";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import CreateStructurePage from "./CreateStructurePage";
 
 describe("Given the create structure page", () => {
@@ -7,7 +7,7 @@ describe("Given the create structure page", () => {
     test("Then it should show a heading with text 'Add new structure'", () => {
       const expectedHeading = "Add new structure";
 
-      renderWithProviders(<CreateStructurePage />);
+      renderWithRoutersAndProviders({ ui: <CreateStructurePage /> });
 
       const renderedHeading = screen.getByRole("heading", {
         name: expectedHeading,

@@ -44,12 +44,14 @@ const CreateForm = (): JSX.Element => {
 
     const newStructure = new FormData(event.currentTarget);
 
-    newStructure.append("creationTime", `${Date.now()}`);
+    newStructure.append(
+      "creationTime",
+      `${new Date(Date.now()).toUTCString()}`
+    );
     newStructure.append("owner", id);
 
     createStructure(newStructure);
     setFormData({ ...initialState });
-    window.scroll({ top: 0 });
   };
 
   return (

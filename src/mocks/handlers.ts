@@ -98,3 +98,31 @@ export const getById = [
     }
   ),
 ];
+
+export const errorCreate = [
+  rest.post(
+    `${process.env.REACT_APP_URL_API}/structures/create`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(401),
+        ctx.json({
+          error: "Can't create",
+        })
+      );
+    }
+  ),
+];
+
+export const createHandler = [
+  rest.post(
+    `${process.env.REACT_APP_URL_API}/structures/create`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(201),
+        ctx.json({
+          created: "Aljub SN08",
+        })
+      );
+    }
+  ),
+];

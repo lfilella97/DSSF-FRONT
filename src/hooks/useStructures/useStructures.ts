@@ -6,9 +6,10 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   ApiStructures,
+  CreatedResponse,
   DeletedResponse,
   ErrorResponse,
-  Structure,
+  StructureApi,
   StructuresApi,
 } from "../../types";
 import {
@@ -16,6 +17,7 @@ import {
   turnOnLoaderActionCreator,
 } from "../../store/features/ui/uiSlice/uiSlice";
 import modal from "../../modals/modals";
+import { useNavigate } from "react-router-dom";
 
 interface UseStrucutres {
   getStructures: () => Promise<void>;
@@ -25,6 +27,7 @@ interface UseStrucutres {
 }
 
 const useStructures = (): UseStrucutres => {
+  const navigateTo = useNavigate();
   const dispatch = useAppDispatch();
   const {
     user: { token },
@@ -43,6 +46,7 @@ const useStructures = (): UseStrucutres => {
       }
 
       const { structures }: StructuresApi = await response.json();
+
       dispatch(turnOffLoaderActionCreator());
 
       dispatch(loadStructuresActionCreator(structures));
@@ -97,13 +101,20 @@ const useStructures = (): UseStrucutres => {
         }
       );
 
+      const apiStructures: ApiStructures = await response.json();
+
+      if (!response.ok) {
+        throw new Error((apiStructures as ErrorResponse).error);
+      }
+
+      modal((apiStructures as CreatedResponse).message);
+
       dispatch(turnOffLoaderActionCreator());
 
-      modal(`Created succesfully`);
-
-      await response.json();
+      navigateTo("/home");
     } catch (error) {
       modal("Ups, something went wrong", "error");
+
       dispatch(turnOffLoaderActionCreator());
     }
   };
@@ -123,7 +134,11 @@ const useStructures = (): UseStrucutres => {
           throw new Error((apiStructures as ErrorResponse).error);
         }
 
-        dispatch(loadStructuresActionCreator([apiStructures as Structure]));
+        dispatch(
+          loadStructuresActionCreator([
+            (apiStructures as StructureApi).structure,
+          ])
+        );
         dispatch(turnOffLoaderActionCreator());
       } catch (error) {
         modal("Ups, something went wrong", "error");

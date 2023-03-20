@@ -41,6 +41,10 @@ export interface StructuresApi {
   structures: Structures;
 }
 
+export interface StructureApi {
+  structure: Structure;
+}
+
 export type StructureCard = Pick<
   Structure,
   "elevation" | "type" | "id" | "image" | "name" | "location"
@@ -58,7 +62,7 @@ export type ApiStructures =
   | ErrorResponse
   | DeletedResponse
   | CreatedResponse
-  | Structure;
+  | StructureApi;
 
 export interface StructureFormData
   extends Pick<

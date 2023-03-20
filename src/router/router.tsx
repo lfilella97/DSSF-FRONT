@@ -4,6 +4,7 @@ import Layout from "../components/Layout/Layout";
 import LoggedRedirects from "../components/LoggedRedirects/LoggedRedirects";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import CreateStructurePage from "../pages/CreateStructurePage/CreateStructurePage";
+import DetailPage from "../pages/DetailPage/DetailPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import StructuresPage from "../pages/StructuresPage/StructuresPage";
 
@@ -33,6 +34,10 @@ const routes: RouteObject[] = [
       {
         path: "/map",
         element: <></>,
+      },
+      {
+        path: "/structure/:id",
+        element: <DetailPage></DetailPage>,
       },
       {
         path: "/add-new-structure",
