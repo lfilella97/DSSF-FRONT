@@ -34,9 +34,9 @@ const Layout = (): JSX.Element => {
       <main className="content">
         <Suspense fallback={<Loading />}>
           <Outlet />
+          <ToastContainer className="modal" />
         </Suspense>
       </main>
-      <ToastContainer className="modal" />
     </LayoutStyled>
   );
 };
