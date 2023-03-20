@@ -3,6 +3,7 @@ import Structure from "../../components/Structure/Structure";
 import useStructures from "../../hooks/useStructures/useStructures";
 import { useAppSelector } from "../../store/hooks";
 import StructuresStyled from "./StructuresPageStyled";
+import { ToastContainer } from "react-toastify";
 
 const StructuresPage = (): JSX.Element => {
   const { structures } = useAppSelector((state) => state);
@@ -18,6 +19,7 @@ const StructuresPage = (): JSX.Element => {
         {structures.map((structure) => (
           <li key={structure.id}>
             <Structure structure={structure} />
+            <ToastContainer className="modal" />;
           </li>
         ))}
       </ul>

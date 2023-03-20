@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import { lazy } from "react";
+import DetailPage from "../pages/DetailPage/DetailPage";
 
 const StructuresPage = lazy(
   () => import("../pages/StructuresPage/StructuresPage")
@@ -37,6 +38,10 @@ const routes: RouteObject[] = [
       {
         path: "/*",
         element: <div className="not-found">404 Page not found</div>,
+      },
+      {
+        path: "/structure/:id",
+        element: <DetailPage></DetailPage>,
       },
       {
         path: "/add-new-structure",

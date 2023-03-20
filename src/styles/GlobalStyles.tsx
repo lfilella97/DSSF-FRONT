@@ -1,4 +1,3 @@
-import "../../node_modules/@fontsource/roboto/400.css";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
