@@ -1,4 +1,4 @@
-import { Modal, UiState } from "../../../../types";
+import { ModalStructure, UiState } from "../../../../types";
 import {
   turnOffLoaderActionCreator,
   turnOffModalActionCreator,
@@ -52,7 +52,7 @@ describe("Given the ui reducer", () => {
         isLoading: false,
         modals: { message: "", error: false },
       };
-      const modal: Modal = { message: "error", error: true };
+      const modal: ModalStructure = { message: "error", error: true };
 
       const expectedResult: UiState = {
         isLoading: false,

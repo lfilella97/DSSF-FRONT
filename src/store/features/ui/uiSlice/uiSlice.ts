@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Modal, UiState } from "../../../../types";
+import { ModalStructure, UiState } from "../../../../types";
 
 const uiInitialState: UiState = {
   isLoading: false,
@@ -21,7 +21,7 @@ const uiSlice = createSlice({
 
     turnOnModal: (
       currentState: UiState,
-      action: PayloadAction<Modal>
+      action: PayloadAction<ModalStructure>
     ): UiState => ({ ...currentState, modals: { ...action.payload } }),
 
     turnOffModal: (currentState: UiState): UiState => ({

@@ -50,7 +50,7 @@ describe("Given the loginUser function", () => {
         password: "pallars",
       });
 
-      expect(spyDispatch).toBeCalledTimes(2);
+      expect(spyDispatch).toBeCalledTimes(3);
     });
   });
 });

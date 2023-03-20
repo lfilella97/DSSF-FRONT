@@ -1,18 +1,16 @@
 import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
+import useUser from "../../hooks/useUser/useUser";
 import Loading from "../Loading/Loading";
+import Modal from "../Modal/Modal";
 import NavBar from "../NavBar/NavBar";
 import LayoutStyled from "./LayoutStyled";
 
 const Layout = (): JSX.Element => {
   const { checkStorageToken } = useUser();
 
-  const {
-    ui: { isLoading },
-  } = useAppSelector((state) => state);
+  const { isLoading } = useAppSelector((state) => state.ui);
 
   useEffect(() => {
     checkStorageToken();
@@ -34,7 +32,7 @@ const Layout = (): JSX.Element => {
       <main className="content">
         <Suspense fallback={<Loading />}>
           <Outlet />
-          <ToastContainer className="modal" />
+          <Modal />
         </Suspense>
       </main>
     </LayoutStyled>

@@ -1,14 +1,20 @@
+import { useCallback } from "react";
+import { useAppDispatch } from "../../store/hooks";
+import {
+  ApiUser,
+  ErrorResponse,
+  ModalStructure,
+  User,
+  UserCredentials,
+} from "../../types";
 import {
   loginUserActionCreator,
   logOutUserActionCreator,
 } from "../../store/features/users/userSlice/userSlice";
-import { useAppDispatch } from "../../store/hooks";
-import { ApiUser, ErrorResponse, User, UserCredentials } from "../../types";
-import { useCallback } from "react";
-import modal from "../../modals/modals";
 import {
   turnOffLoaderActionCreator,
   turnOnLoaderActionCreator,
+  turnOnModalActionCreator,
 } from "../../store/features/ui/uiSlice/uiSlice";
 
 interface UseUser {
@@ -48,7 +54,12 @@ const useUser = (): UseUser => {
       dispatch(loginUserActionCreator(apiResponse as User));
     } catch (error) {
       dispatch(turnOffLoaderActionCreator());
-      modal((error as Error).message, "error");
+
+      const modal: ModalStructure = {
+        message: (error as Error).message,
+        error: true,
+      };
+      dispatch(turnOnModalActionCreator(modal));
     }
   };
 

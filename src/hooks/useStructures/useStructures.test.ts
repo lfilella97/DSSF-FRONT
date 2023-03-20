@@ -61,7 +61,7 @@ describe("Given the getStructures function", () => {
 
       await getStructures();
 
-      expect(spyDispatch).toBeCalledTimes(2);
+      expect(spyDispatch).toBeCalledTimes(3);
     });
   });
 });
@@ -132,7 +132,7 @@ describe("Given the getStructure function", () => {
 
       await getStructure("id");
 
-      expect(spyDispatch).toBeCalledTimes(1);
+      expect(spyDispatch).toBeCalledTimes(2);
     });
   });
 });
@@ -153,7 +153,7 @@ describe("Given the createStructure function", () => {
 
       await createStructure(newStructure as unknown as FormData);
 
-      expect(spyDispatch).toBeCalledTimes(2);
+      expect(spyDispatch).toBeCalledTimes(3);
     });
   });
 
@@ -172,7 +172,7 @@ describe("Given the createStructure function", () => {
 
       await createStructure(newStructure as unknown as FormData);
 
-      expect(spyDispatch).toBeCalledTimes(2);
+      expect(spyDispatch).toBeCalledTimes(3);
     });
   });
 });
