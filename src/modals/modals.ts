@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 
 const modal = (message: string, type?: string) => {
   if (type !== "error") {

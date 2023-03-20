@@ -19,7 +19,7 @@ const StructuresPage = (): JSX.Element => {
         {structures.map((structure) => (
           <li key={structure.id}>
             <Structure structure={structure} />
-            <ToastContainer className="modal" />;
+            <ToastContainer className="modal" />
           </li>
         ))}
       </ul>

@@ -62,7 +62,7 @@ describe("Given the navBar with real router", () => {
       const routerAndState: RouterAndState = {
         preloadedState: {
           user: { isLogged: true, token: "token" },
-          ui: { isLoading: false, modals: [] },
+          ui: { isLoading: false, modals: { error: false, message: "" } },
           structures: [],
         },
       };

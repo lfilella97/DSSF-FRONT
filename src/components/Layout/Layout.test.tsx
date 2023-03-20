@@ -25,7 +25,9 @@ describe("Given the Layout component", () => {
 
       const routerAndState: RouterAndState = {
         ui: <Layout />,
-        preloadedState: { ui: { isLoading: true, modals: [] } },
+        preloadedState: {
+          ui: { isLoading: true, modals: { error: false, message: "" } },
+        },
       };
 
       renderWithRoutersAndProviders(routerAndState);
