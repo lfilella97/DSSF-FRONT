@@ -54,7 +54,11 @@ export interface CreatedResponse {
   message: string;
 }
 
-export type ApiStructures = ErrorResponse | DeletedResponse | CreatedResponse;
+export type ApiStructures =
+  | ErrorResponse
+  | DeletedResponse
+  | CreatedResponse
+  | Structure;
 
 export interface StructureFormData
   extends Pick<

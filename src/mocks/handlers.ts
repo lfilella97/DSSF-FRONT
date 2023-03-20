@@ -75,3 +75,26 @@ export const errorHandlers = [
     }
   ),
 ];
+
+export const getByIDError = [
+  rest.get(
+    `${process.env.REACT_APP_URL_API}/structures/id`,
+    async (req, res, ctx) => {
+      return res(
+        ctx.status(401),
+        ctx.json({
+          error: "Structure not found",
+        })
+      );
+    }
+  ),
+];
+
+export const getById = [
+  rest.get(
+    `${process.env.REACT_APP_URL_API}/structures/id`,
+    async (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({}));
+    }
+  ),
+];
