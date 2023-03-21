@@ -28,15 +28,6 @@ const LoadingStyled = styled.div`
     animation: layerTr 1s linear infinite alternate;
   }
 
-  @keyframes layers1 {
-    0% {
-      box-shadow: 0px 0px 0 0px;
-    }
-    90%,
-    100% {
-      box-shadow: 20px 20px 0 -4px;
-    }
-  }
   @keyframes layerTr {
     0% {
       transform: translate(0, 0) scale(1);
