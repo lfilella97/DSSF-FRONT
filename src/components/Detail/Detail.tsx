@@ -77,9 +77,11 @@ const Detail = ({
           <NavLink aria-label="modify" to={`structure/edit/${name}/${id}`}>
             <FontAwesomeIcon name="elevation" icon={solid("edit")} />
           </NavLink>
-          <button aria-label="delete" onClick={() => deleteStructure(id)}>
-            <FontAwesomeIcon name="elevation" icon={solid("trash")} />
-          </button>
+          <NavLink to={"/home"}>
+            <button aria-label="delete" onClick={() => deleteStructure(id)}>
+              <FontAwesomeIcon name="elevation" icon={solid("trash")} />
+            </button>
+          </NavLink>
         </span>
       )}
     </DetailStyled>
