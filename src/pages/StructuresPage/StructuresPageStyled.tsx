@@ -3,8 +3,9 @@ import styled from "styled-components";
 const StructuresStyled = styled.div`
   .structures {
     &__title {
-      padding: 20px 0;
       color: ${(props) => props.theme.colour.main};
+      font-size: ${(props) => props.theme.fonts.titleFontSizeXL};
+      padding-bottom: 10px;
     }
 
     &__notFound {

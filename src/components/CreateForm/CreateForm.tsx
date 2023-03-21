@@ -114,6 +114,7 @@ const CreateForm = (): JSX.Element => {
           placeholder="Introduce structure elevation"
           id="elevation"
           name="elevation"
+          required
         />
 
         <label className="form__text" htmlFor="image">
@@ -126,6 +127,7 @@ const CreateForm = (): JSX.Element => {
           placeholder="Introduce structure image"
           id="image"
           name="image"
+          required
         />
 
         <label className="form__text" htmlFor="description">
@@ -138,6 +140,7 @@ const CreateForm = (): JSX.Element => {
           placeholder="Introduce structure description"
           id="description"
           name="description"
+          required
         />
       </div>
 

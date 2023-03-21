@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Filter from "../../components/Filter/Filter";
 import Structure from "../../components/Structure/Structure";
 import useStructures from "../../hooks/useStructures/useStructures";
 import { useAppSelector } from "../../store/hooks";
@@ -15,6 +16,7 @@ const StructuresPage = (): JSX.Element => {
   return (
     <StructuresStyled>
       <h2 className="structures__title">Structures:</h2>
+      <Filter />
       <ul className="structures">
         {structures[0] &&
           structures.map((structure) => (

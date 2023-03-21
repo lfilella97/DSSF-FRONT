@@ -20,7 +20,7 @@ import {
 } from "../../types";
 
 interface UseStrucutres {
-  getStructures: () => Promise<void>;
+  getStructures: (key?: string, value?: string) => Promise<void>;
   deleteStructure: (id: string) => void;
   createStructure: (structure: FormData) => Promise<void>;
   getStructure: (id: string) => void;
@@ -33,34 +33,37 @@ const useStructures = (): UseStrucutres => {
     user: { token },
   } = useAppSelector((store) => store);
 
-  const getStructures = useCallback(async () => {
-    dispatch(turnOnLoaderActionCreator());
+  const getStructures = useCallback(
+    async (key?: string, value?: string) => {
+      dispatch(turnOnLoaderActionCreator());
 
-    const structuresPath = "/structures";
+      const structuresPath = "/structures";
+      const querryParams = new URLSearchParams(`${key}=${value}`);
+      try {
+        const response: Response = await fetch(
+          `${process.env.REACT_APP_URL_API!}${structuresPath}?${querryParams}`
+        );
 
-    try {
-      const response: Response = await fetch(
-        `${process.env.REACT_APP_URL_API!}${structuresPath}`
-      );
+        if (!response.ok) {
+          throw new Error();
+        }
 
-      if (!response.ok) {
-        throw new Error();
+        const { structures }: StructuresApi = await response.json();
+
+        dispatch(turnOffLoaderActionCreator());
+        dispatch(loadStructuresActionCreator(structures));
+      } catch (error) {
+        dispatch(turnOffLoaderActionCreator());
+        dispatch(
+          turnOnModalActionCreator({
+            message: "Ups, something went wrong",
+            error: true,
+          })
+        );
       }
-
-      const { structures }: StructuresApi = await response.json();
-
-      dispatch(turnOffLoaderActionCreator());
-      dispatch(loadStructuresActionCreator(structures));
-    } catch (error) {
-      dispatch(turnOffLoaderActionCreator());
-      dispatch(
-        turnOnModalActionCreator({
-          message: "Ups, something went wrong",
-          error: true,
-        })
-      );
-    }
-  }, [dispatch]);
+    },
+    [dispatch]
+  );
 
   const deleteStructure = async (id: string) => {
     const structuresPath = "/structures";
