@@ -57,7 +57,7 @@ const DetailStyled = styled.div`
       left: 0;
 
       > * {
-        > svg {
+        svg {
           height: 40px;
           width: 40px;
           color: white;

@@ -4,6 +4,17 @@ const StructuresStyled = styled.div`
   width: 100%;
   height: 100%;
 
+  .structures {
+    &__title {
+      padding: 20px 0;
+      color: ${(props) => props.theme.colour.main};
+    }
+
+    &__notFound {
+      padding-top: 30px;
+    }
+  }
+
   ul {
     display: grid;
     grid-auto-rows: auto;
