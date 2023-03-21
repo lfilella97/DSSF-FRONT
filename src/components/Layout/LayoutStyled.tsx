@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const LayoutStyled = styled.div`
+  display: block;
+
   min-height: 100vh;
 
   .header {
@@ -30,11 +32,10 @@ const LayoutStyled = styled.div`
 
   .content {
     margin-top: 115px;
-    width: 100%;
+    min-height: 100vh;
     padding: ${(props) => props.theme.padding.mainMobilePadding};
   }
   .not-found {
-    text-align: center;
   }
 `;
 
