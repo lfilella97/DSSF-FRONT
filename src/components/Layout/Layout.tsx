@@ -29,12 +29,12 @@ const Layout = (): JSX.Element => {
         />
       </header>
       <NavBar />
-      <main className="content">
-        <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
+        <main className="content">
           <Outlet />
           <Modal />
-        </Suspense>
-      </main>
+        </main>
+      </Suspense>
     </LayoutStyled>
   );
 };

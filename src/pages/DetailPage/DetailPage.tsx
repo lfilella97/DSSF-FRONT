@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
-import useStructures from "../../hooks/useStructures/useStructures";
-import { useAppSelector } from "../../store/hooks";
-import Detail from "../../components/Detail/Detail";
 import { useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import useStructures from "../../hooks/useStructures/useStructures";
+import Detail from "../../components/Detail/Detail";
+import { useAppSelector } from "../../store/hooks";
 
 const DetailPage = (): JSX.Element => {
   const { structures } = useAppSelector((state) => state);
@@ -15,7 +15,12 @@ const DetailPage = (): JSX.Element => {
     getStructure(id!);
   }, [getStructure, id]);
 
-  return <Detail structure={structures[0]} />;
+  return (
+    <>
+      {structures[0] && <Detail structure={structures[0]} />}
+      {!structures[0] && <Navigate to={"/home"} />}
+    </>
+  );
 };
 
 export default DetailPage;

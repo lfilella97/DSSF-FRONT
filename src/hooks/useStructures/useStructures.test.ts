@@ -132,7 +132,7 @@ describe("Given the getStructure function", () => {
 
       await getStructure("id");
 
-      expect(spyDispatch).toBeCalledTimes(2);
+      expect(spyDispatch).toBeCalledTimes(3);
     });
   });
 });

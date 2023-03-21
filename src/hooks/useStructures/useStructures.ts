@@ -175,6 +175,7 @@ const useStructures = (): UseStrucutres => {
             error: true,
           })
         );
+        dispatch(turnOffLoaderActionCreator());
       }
     },
     [dispatch]

@@ -36,4 +36,22 @@ describe("Given the component Structure", () => {
       expect(title).toBeInTheDocument();
     });
   });
+
+  describe("When it is rendered and there is no Structures", () => {
+    test("Then it should show a Structure with image", () => {
+      const routeAndState: RouterAndState = {
+        ui: <DetailPage />,
+        preloadedState: {
+          user: { isLogged: true, token: "dsx" },
+          structures: [],
+        },
+      };
+
+      renderWithRoutersAndProviders(routeAndState);
+
+      const title = screen.getByRole("heading", { name: "Structures:" });
+
+      expect(title).toBeInTheDocument();
+    });
+  });
 });
