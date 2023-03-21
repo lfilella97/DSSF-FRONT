@@ -2,10 +2,9 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import { lazy } from "react";
 import App from "../App";
 import StructuresPage from "../pages/StructuresPage/StructuresPage";
+import DetailPage from "../pages/DetailPage/DetailPage";
 
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
-
-const DetailPage = lazy(() => import("../pages/DetailPage/DetailPage"));
 
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
 const CreateStructurePage = lazy(
