@@ -18,7 +18,12 @@ export interface UserCredentials {
 
 export interface UiState {
   isLoading: boolean;
-  modals: [];
+  modals: ModalStructure;
+}
+
+export interface ModalStructure {
+  message: string;
+  error: boolean;
 }
 
 export interface Structure {

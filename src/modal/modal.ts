@@ -1,8 +1,12 @@
+import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 
-const modal = (message: string, type?: string) => {
-  if (type !== "error") {
+const modal = (message: string, error?: boolean) => {
+  if (!message) {
+    return;
+  }
+
+  if (!error) {
     toast.success(message, {
       position: "top-right",
       autoClose: 5000,

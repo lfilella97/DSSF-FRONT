@@ -1,9 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   deletedStructureActionCreator,
   loadStructuresActionCreator,
 } from "../../store/features/structures/structureSlice/structuresSlice";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  turnOffLoaderActionCreator,
+  turnOnLoaderActionCreator,
+  turnOnModalActionCreator,
+} from "../../store/features/ui/uiSlice/uiSlice";
 import {
   ApiStructures,
   CreatedResponse,
@@ -12,12 +18,6 @@ import {
   StructureApi,
   StructuresApi,
 } from "../../types";
-import {
-  turnOffLoaderActionCreator,
-  turnOnLoaderActionCreator,
-} from "../../store/features/ui/uiSlice/uiSlice";
-import modal from "../../modals/modals";
-import { useNavigate } from "react-router-dom";
 
 interface UseStrucutres {
   getStructures: () => Promise<void>;
@@ -35,7 +35,9 @@ const useStructures = (): UseStrucutres => {
 
   const getStructures = useCallback(async () => {
     dispatch(turnOnLoaderActionCreator());
+
     const structuresPath = "/structures";
+
     try {
       const response: Response = await fetch(
         `${process.env.REACT_APP_URL_API!}${structuresPath}`
@@ -48,16 +50,21 @@ const useStructures = (): UseStrucutres => {
       const { structures }: StructuresApi = await response.json();
 
       dispatch(turnOffLoaderActionCreator());
-
       dispatch(loadStructuresActionCreator(structures));
     } catch (error) {
       dispatch(turnOffLoaderActionCreator());
-      modal("Ups, something went wrong", "error");
+      dispatch(
+        turnOnModalActionCreator({
+          message: "Ups, something went wrong",
+          error: true,
+        })
+      );
     }
   }, [dispatch]);
 
   const deleteStructure = async (id: string) => {
     const structuresPath = "/structures";
+
     try {
       const response: Response = await fetch(
         `${process.env.REACT_APP_URL_API!}${structuresPath}/${id}`,
@@ -77,9 +84,20 @@ const useStructures = (): UseStrucutres => {
       }
 
       dispatch(deletedStructureActionCreator(id));
-      modal(`Deleted ${(apiStructures as DeletedResponse).deleted}`);
+
+      dispatch(
+        turnOnModalActionCreator({
+          message: `Deleted ${(apiStructures as DeletedResponse).deleted}`,
+          error: false,
+        })
+      );
     } catch (error) {
-      modal("Ups, something went wrong", "error");
+      dispatch(
+        turnOnModalActionCreator({
+          message: "Ups, something went wrong",
+          error: true,
+        })
+      );
     }
   };
 
@@ -107,13 +125,23 @@ const useStructures = (): UseStrucutres => {
         throw new Error((apiStructures as ErrorResponse).error);
       }
 
-      modal((apiStructures as CreatedResponse).message);
+      dispatch(
+        turnOnModalActionCreator({
+          message: (apiStructures as CreatedResponse).message,
+          error: false,
+        })
+      );
 
       dispatch(turnOffLoaderActionCreator());
 
       navigateTo("/home");
     } catch (error) {
-      modal("Ups, something went wrong", "error");
+      dispatch(
+        turnOnModalActionCreator({
+          message: (error as ErrorResponse).error,
+          error: true,
+        })
+      );
 
       dispatch(turnOffLoaderActionCreator());
     }
@@ -141,7 +169,12 @@ const useStructures = (): UseStrucutres => {
         );
         dispatch(turnOffLoaderActionCreator());
       } catch (error) {
-        modal("Ups, something went wrong", "error");
+        dispatch(
+          turnOnModalActionCreator({
+            message: "Ups, something went wrong",
+            error: true,
+          })
+        );
       }
     },
     [dispatch]
