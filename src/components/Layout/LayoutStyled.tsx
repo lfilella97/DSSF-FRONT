@@ -32,7 +32,7 @@ const LayoutStyled = styled.div`
 
   .content {
     margin-top: 115px;
-    min-height: 100vh;
+
     padding: ${(props) => props.theme.padding.mainMobilePadding};
   }
   .not-found {

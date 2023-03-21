@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 const StructuresStyled = styled.div`
-  width: 100%;
-  height: 100%;
-
   .structures {
     &__title {
       padding: 20px 0;
