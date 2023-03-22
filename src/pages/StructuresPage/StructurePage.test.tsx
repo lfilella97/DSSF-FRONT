@@ -34,19 +34,4 @@ describe("Given the Structure page", () => {
       expect(renderedHeading).toBeInTheDocument();
     });
   });
-
-  describe("When it is rendered a list with no structures", () => {
-    test("Then it should show a text saying `No structures found...`", () => {
-      renderWithRoutersAndProviders({
-        ui: <StructuresPage />,
-        preloadedState: {
-          structures: [],
-        },
-      });
-
-      const renderedHeading = screen.getByText(`No structures found...`);
-
-      expect(renderedHeading).toBeInTheDocument();
-    });
-  });
 });

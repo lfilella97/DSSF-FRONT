@@ -6,6 +6,7 @@ const CreateFormStyled = styled.form`
   align-items: center;
   gap: ${(props) => props.theme.gap.clickableGap};
   width: 100%;
+
   .form {
     width: 100%;
     &__fields {
@@ -43,6 +44,7 @@ const CreateFormStyled = styled.form`
       background-color: ${(props) => props.theme.colour.main};
       font-size: ${(props) => props.theme.fonts.textFontSizeM};
       color: ${(props) => props.theme.colour.white};
+      margin-bottom: 40px;
     }
   }
 
