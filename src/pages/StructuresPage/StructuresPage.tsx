@@ -1,18 +1,20 @@
 import { useEffect } from "react";
 import Filter from "../../components/Filter/Filter";
 import Structure from "../../components/Structure/Structure";
-import useStructures from "../../hooks/useStructures/useStructures";
-import { useAppSelector } from "../../store/hooks";
+import { turnOnLoaderActionCreator } from "../../store/features/ui/uiSlice/uiSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import StructuresStyled from "./StructuresPageStyled";
 
 const StructuresPage = (): JSX.Element => {
-  const { structures } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  const {
+    structures,
+    ui: { isLoading },
+  } = useAppSelector((state) => state);
 
-  const { getStructures } = useStructures();
   useEffect(() => {
-    getStructures();
-  }, [getStructures]);
-
+    dispatch(turnOnLoaderActionCreator());
+  }, [dispatch]);
   return (
     <StructuresStyled>
       <h2 className="structures__title">Structures:</h2>
@@ -24,7 +26,7 @@ const StructuresPage = (): JSX.Element => {
               <Structure structure={structure} />
             </li>
           ))}
-        {!structures[0] && (
+        {!isLoading && !structures[0] && (
           <span className="structures__notFound">No structures found...</span>
         )}
       </ul>
