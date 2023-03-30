@@ -1,6 +1,6 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn)[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn)[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn)[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=isdi-coders-2023_Lluis-Filella-Final-Project-front-202301-bcn)
 
-![Logo](public\images\DSSF-logo.svg)
+![Logo](/public/images/DSSF-logo.svg)
 ![App](https://sfxfnjejlztsnoxyochi.supabase.co/storage/v1/object/public/structures/Captura%20de%20pantalla%202023-03-22%20170016.png)
 
 ## Content:
