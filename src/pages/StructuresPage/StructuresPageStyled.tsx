@@ -5,9 +5,23 @@ const StructuresStyled = styled.div`
     &__title {
       color: ${(props) => props.theme.colour.main};
       font-size: ${(props) => props.theme.fonts.titleFontSizeXL};
-      padding-bottom: 10px;
+      width: 100%;
     }
 
+    &__load-more {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      > button {
+        border-radius: 25px;
+        background-color: ${(props) => props.theme.colour.main};
+        font-size: ${(props) => props.theme.fonts.titleFontSizeM};
+        color: ${(props) => props.theme.colour.white};
+        padding: 10px 10px;
+        border: 1px solid white;
+        width: 50%;
+      }
+    }
     &__notFound {
       padding-top: 30px;
     }

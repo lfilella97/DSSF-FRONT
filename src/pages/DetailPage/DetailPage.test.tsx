@@ -25,7 +25,12 @@ describe("Given the component Structure", () => {
         ui: <DetailPage />,
         preloadedState: {
           user: { isLogged: true, token: "dsx" },
-          structures: [structure],
+          structures: {
+            currentPage: "",
+            structures: [structure],
+            totalPages: 2,
+            totalStructures: 5,
+          },
         },
       };
 
@@ -43,7 +48,12 @@ describe("Given the component Structure", () => {
         ui: <DetailPage />,
         preloadedState: {
           user: { isLogged: true, token: "dsx" },
-          structures: [],
+          structures: {
+            currentPage: "",
+            structures: [],
+            totalPages: 2,
+            totalStructures: 5,
+          },
         },
       };
 

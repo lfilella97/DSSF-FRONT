@@ -5,7 +5,9 @@ import Detail from "../../components/Detail/Detail";
 import { useAppSelector } from "../../store/hooks";
 
 const DetailPage = (): JSX.Element => {
-  const { structures } = useAppSelector((state) => state);
+  const {
+    structures: { structures },
+  } = useAppSelector((state) => state);
 
   const { getStructure } = useStructures();
 
