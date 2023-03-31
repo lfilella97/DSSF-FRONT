@@ -1,27 +1,49 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Structures } from "../../../../types";
+import { StructuresState } from "../../../../types";
 
-const structuresInitialState: Structures = [];
+const structuresInitialState: StructuresState = {
+  structures: [],
+  currentPage: "1",
+  totalPages: 0,
+  totalStructures: 0,
+};
+
 const structuresSlice = createSlice({
   name: "structures",
   initialState: structuresInitialState,
   reducers: {
     loadStructures: (
-      currentState: Structures,
-      action: PayloadAction<Structures>
-    ): Structures => [...action.payload],
+      currentState: StructuresState,
+      action: PayloadAction<StructuresState>
+    ): StructuresState => ({
+      ...action.payload,
+    }),
 
     deleteStructure: (
-      currentState,
+      currentState: StructuresState,
       action: PayloadAction<string>
-    ): Structures => [
-      ...currentState.filter((structure) => structure.id !== action.payload),
-    ],
+    ): StructuresState => ({
+      ...currentState,
+      totalStructures: currentState.totalStructures - 1,
+      structures: [
+        ...currentState.structures.filter(
+          (structure) => structure.id !== action.payload
+        ),
+      ],
+    }),
+    loadMoreStructures: (
+      currentState: StructuresState,
+      action: PayloadAction<StructuresState>
+    ): StructuresState => ({
+      ...action.payload,
+      structures: [...currentState.structures, ...action.payload.structures],
+    }),
   },
 });
 
 export const {
   loadStructures: loadStructuresActionCreator,
   deleteStructure: deletedStructureActionCreator,
+  loadMoreStructures: loadMoreStructuresActionCreator,
 } = structuresSlice.actions;
 export const structuresReducer = structuresSlice.reducer;

@@ -26,7 +26,7 @@ export interface ModalStructure {
   error: boolean;
 }
 
-export interface Structure {
+export interface StructureStructure {
   name: string;
   owner: string;
   type: string;
@@ -40,18 +40,24 @@ export interface Structure {
   id: string;
 }
 
-export type Structures = Structure[];
+export type Structures = StructureStructure[];
 
+export interface StructuresState {
+  structures: Structures;
+  currentPage: string;
+  totalPages: number;
+  totalStructures: number;
+}
 export interface StructuresApi {
   structures: Structures;
 }
 
 export interface StructureApi {
-  structure: Structure;
+  structure: StructureStructure;
 }
 
 export type StructureCard = Pick<
-  Structure,
+  StructureStructure,
   "elevation" | "type" | "id" | "image" | "name" | "location"
 >;
 
@@ -67,11 +73,12 @@ export type ApiStructures =
   | ErrorResponse
   | DeletedResponse
   | CreatedResponse
-  | StructureApi;
+  | StructureApi
+  | StructuresState;
 
 export interface StructureFormData
   extends Pick<
-    Structure,
+    StructureStructure,
     "description" | "elevation" | "name" | "type" | "location"
   > {
   image: File | null;
@@ -81,4 +88,10 @@ export interface CustomJwtPayload {
   id: string;
   userName: string;
   isAdmin?: boolean;
+}
+
+export interface FilterAndPagination {
+  filterType: string;
+  page: string;
+  limit: string;
 }
