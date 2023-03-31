@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   deletedStructureActionCreator,
+  loadMoreStructuresActionCreator,
   loadStructuresActionCreator,
 } from "../../store/features/structures/structureSlice/structuresSlice";
 import {
@@ -15,12 +16,11 @@ import {
   CreatedResponse,
   DeletedResponse,
   ErrorResponse,
-  StructureApi,
-  StructuresApi,
+  StructuresState,
 } from "../../types";
 
 interface UseStrucutres {
-  getStructures: (key?: string, value?: string) => Promise<void>;
+  getStructures: (params: URLSearchParams, more?: boolean) => Promise<void>;
   deleteStructure: (id: string) => void;
   createStructure: (structure: FormData) => Promise<void>;
   getStructure: (id: string) => void;
@@ -34,24 +34,28 @@ const useStructures = (): UseStrucutres => {
   } = useAppSelector((store) => store);
 
   const getStructures = useCallback(
-    async (key?: string, value?: string) => {
+    async (params: URLSearchParams, loadMore = false) => {
       dispatch(turnOnLoaderActionCreator());
 
       const structuresPath = "/structures";
-      const querryParams = new URLSearchParams(`${key}=${value}`);
+
       try {
         const response: Response = await fetch(
-          `${process.env.REACT_APP_URL_API!}${structuresPath}?${querryParams}`
+          `${process.env.REACT_APP_URL_API!}${structuresPath}?${params}`
         );
 
         if (!response.ok) {
           throw new Error();
         }
 
-        const { structures }: StructuresApi = await response.json();
+        const structuresState: StructuresState = await response.json();
 
         dispatch(turnOffLoaderActionCreator());
-        dispatch(loadStructuresActionCreator(structures));
+        dispatch(
+          (loadMore
+            ? loadMoreStructuresActionCreator
+            : loadStructuresActionCreator)(structuresState)
+        );
       } catch (error) {
         dispatch(turnOffLoaderActionCreator());
         dispatch(
@@ -165,11 +169,7 @@ const useStructures = (): UseStrucutres => {
           throw new Error((apiStructures as ErrorResponse).error);
         }
 
-        dispatch(
-          loadStructuresActionCreator([
-            (apiStructures as StructureApi).structure,
-          ])
-        );
+        dispatch(loadStructuresActionCreator(apiStructures as StructuresState));
         dispatch(turnOffLoaderActionCreator());
       } catch (error) {
         dispatch(

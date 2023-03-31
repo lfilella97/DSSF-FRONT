@@ -10,6 +10,7 @@ import { server } from "../../mocks/server";
 import wrapper from "../../mocks/Wrapper";
 import {
   deletedStructureActionCreator,
+  loadMoreStructuresActionCreator,
   loadStructuresActionCreator,
 } from "../../store/features/structures/structureSlice/structuresSlice";
 import { store } from "../../store/store";
@@ -31,8 +32,8 @@ beforeAll(() => {
 });
 
 describe("Given the getStructures function", () => {
-  describe("When it is called", () => {
-    test("Then it should call dispatch with a list of structures", async () => {
+  describe("When it is called without loadingMore", () => {
+    test("Then it should call dispatch with a list of structures and pagination info", async () => {
       const {
         result: {
           current: { getStructures },
@@ -41,11 +42,38 @@ describe("Given the getStructures function", () => {
 
       const structures: Structures = [];
 
-      const actionCall = loadStructuresActionCreator(structures);
+      const actionCall = loadStructuresActionCreator({
+        structures,
+        currentPage: "1",
+        totalPages: 1,
+        totalStructures: 2,
+      });
 
-      await getStructures();
+      await getStructures(new URLSearchParams({}), false);
 
-      expect(spyDispatch).toBeCalledWith(actionCall);
+      expect(spyDispatch).toHaveBeenNthCalledWith(3, actionCall);
+    });
+  });
+  describe("When it is called with loadMore", () => {
+    test("Then it should call dispatch with a list of structures and pagination info", async () => {
+      const {
+        result: {
+          current: { getStructures },
+        },
+      } = renderHook(() => useStructures(), { wrapper });
+
+      const structures: Structures = [];
+
+      const actionCall = loadMoreStructuresActionCreator({
+        structures,
+        currentPage: "1",
+        totalPages: 1,
+        totalStructures: 2,
+      });
+
+      await getStructures(new URLSearchParams({}), true);
+
+      expect(spyDispatch).toHaveBeenNthCalledWith(3, actionCall);
     });
   });
   describe("When it is called and throw an error", () => {
@@ -59,9 +87,12 @@ describe("Given the getStructures function", () => {
         },
       } = renderHook(() => useStructures(), { wrapper });
 
-      await getStructures();
+      await getStructures(new URLSearchParams({}));
 
-      expect(spyDispatch).toBeCalledTimes(3);
+      expect(spyDispatch).toBeCalledWith({
+        payload: { error: true, message: "Ups, something went wrong" },
+        type: "ui/turnOnModal",
+      });
     });
   });
 });

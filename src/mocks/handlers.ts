@@ -20,6 +20,9 @@ export const handlers = [
         ctx.status(200),
         ctx.json({
           structures: [],
+          currentPage: "1",
+          totalPages: 1,
+          totalStructures: 2,
         })
       );
     }
