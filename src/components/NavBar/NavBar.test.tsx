@@ -63,7 +63,12 @@ describe("Given the navBar with real router", () => {
         preloadedState: {
           user: { isLogged: true, token: "token" },
           ui: { isLoading: false, modals: { error: false, message: "" } },
-          structures: [],
+          structures: {
+            currentPage: "",
+            structures: [],
+            totalPages: 2,
+            totalStructures: 5,
+          },
         },
       };
       let homeLink;
