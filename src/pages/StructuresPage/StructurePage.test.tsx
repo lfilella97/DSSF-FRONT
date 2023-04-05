@@ -1,8 +1,11 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
-import { StructureStructure } from "../../types";
 import StructuresPage from "./StructuresPage";
+import {
+  linksAndButtonsText,
+  stateToMock as newStateToMock,
+} from "../../mocks/mocks";
 
 let mockGetStructures = jest.fn();
 
@@ -10,37 +13,21 @@ jest.mock("../../hooks/useStructures/useStructures", () => () => ({
   getStructures: mockGetStructures,
 }));
 
-const initialState: StructureStructure = {
-  elevation: "455",
-  coordenateX: "",
-  coordenateY: "",
-  creationTime: "",
-  description: "",
-  owner: "",
-  name: "Bassa del mas de Roer",
-  type: "string",
-  id: "456789",
-  location: "La granadella",
-  image:
-    "https://sfxfnjejlztsnoxyochi.supabase.co/storage/v1/object/public/structures/Aljub%20del%20mas%20de%20Roer.jpg",
-};
+const { loadMore } = linksAndButtonsText;
+
 describe("Given the Structure page", () => {
   describe("When it is rendered with Bassa del mas de Roer structure", () => {
     test("Then it should show a card with a heading with text `Bassa del mas de roer`", () => {
+      const preloadedState = newStateToMock().setStructures(1).mock();
+      const headingText = "Bassa del mas de Roer";
+
       renderWithRoutersAndProviders({
         ui: <StructuresPage />,
-        preloadedState: {
-          structures: {
-            currentPage: "",
-            structures: [initialState],
-            totalPages: 2,
-            totalStructures: 5,
-          },
-        },
+        preloadedState,
       });
 
       const renderedHeading = screen.getByRole("heading", {
-        name: "Bassa del mas de Roer",
+        name: headingText,
       });
 
       expect(renderedHeading).toBeInTheDocument();
@@ -54,7 +41,7 @@ describe("Given the Structure page", () => {
   });
 
   describe("When it is rendered and the user select General option", () => {
-    test("Then it should call get Structures function one more time", async () => {
+    test("Then it should call get Structures function two times", async () => {
       renderWithRoutersAndProviders({ ui: <StructuresPage /> });
       const dropDown = screen.getByRole("combobox");
 
@@ -67,7 +54,7 @@ describe("Given the Structure page", () => {
   });
 
   describe("When it is rendered and the user select Water option", () => {
-    test("Then it should call get Structures function one more time", async () => {
+    test("Then it should call get Structures function two times", async () => {
       renderWithRoutersAndProviders({ ui: <StructuresPage /> });
       const dropDown = screen.getByRole("combobox");
 
@@ -80,7 +67,7 @@ describe("Given the Structure page", () => {
   });
 
   describe("When it is rendered and the user select Construction option", () => {
-    test("Then it should call getStructures function one more time", async () => {
+    test("Then it should call getStructures function two times", async () => {
       renderWithRoutersAndProviders({ ui: <StructuresPage /> });
       const dropDown = screen.getByRole("combobox");
 
@@ -93,19 +80,14 @@ describe("Given the Structure page", () => {
   });
 
   describe("When it is rendered and the user click on load more button", () => {
-    test("Then it should call getStructures function one more time", async () => {
+    test("Then it should call getStructures function two times", async () => {
+      const preloadedState = newStateToMock().setStructures(5).mock();
+
       renderWithRoutersAndProviders({
         ui: <StructuresPage />,
-        preloadedState: {
-          structures: {
-            structures: [initialState],
-            currentPage: "1",
-            totalPages: 3,
-            totalStructures: 5,
-          },
-        },
+        preloadedState,
       });
-      const renderedButton = screen.getByRole("button", { name: "Load more" });
+      const renderedButton = screen.getByRole("button", { name: loadMore });
 
       await waitFor(async () => {
         await userEvent.click(renderedButton);

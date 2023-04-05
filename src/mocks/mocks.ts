@@ -50,14 +50,17 @@ export const stateToMock = (): StateToMock => ({
 
   setStructures(total: number, firstStructureId: string = "1234") {
     this.structures.structures =
-      total === 1
+      total <= 1
         ? [{ ...structures[0] }]
         : [
-            total !== 0 ? { ...structures[0] } : {},
-            ...Array(total - 1).fill({ ...structures[1] }),
-          ];
+            { ...structures[0] },
+            ...Array(total).fill({ ...structures[1] }),
+          ].map((structure, index) => ({
+            ...structure,
+            id: `${index}123456789`,
+          }));
     this.structures.structures[0].id = firstStructureId;
-    this.structures.totalStructures = total;
+    this.structures.totalPages = Math.round(total / 2);
     return this;
   },
 });
@@ -119,4 +122,5 @@ export const linksAndButtonsText = {
   map: "Map",
   logout: "Logout",
   login: "Login",
+  loadMore: "Load more",
 };
