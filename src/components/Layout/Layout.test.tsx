@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
-import renderWithRoutersAndProviders, {
-  RouterAndState,
-} from "../../testUtils/renderWithRouterAndProviders";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
+import { RouterAndState } from "../../types";
 import Layout from "./Layout";
+import { stateToMock } from "../../mocks/mocks";
 
 describe("Given the Layout component", () => {
   describe("When it is rendered", () => {
@@ -21,13 +21,13 @@ describe("Given the Layout component", () => {
 
   describe("When it is rendered and is loading", () => {
     test("Then it should apper the loader", () => {
+      const preloadedState = stateToMock().setLoadingOn().mock();
+
       const expectedAltText = "This page is loading...";
 
       const routerAndState: RouterAndState = {
         ui: <Layout />,
-        preloadedState: {
-          ui: { isLoading: true, modals: { error: false, message: "" } },
-        },
+        preloadedState,
       };
 
       renderWithRoutersAndProviders(routerAndState);

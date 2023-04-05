@@ -9,13 +9,15 @@ jest.mock("../../hooks/useUser/useUser", () => () => ({
   loginUser: mockLoginUser,
 }));
 
-describe("Given LoginForm component", () => {
+describe("Given the LoginForm component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a header with text 'Log in'", () => {
+      const headingText = "Log in";
+
       renderWithProviders(<LoginForm />);
 
       const renderedTitle = screen.getByRole("heading", {
-        name: "Log in",
+        name: headingText,
       });
 
       expect(renderedTitle).toBeInTheDocument();
@@ -26,9 +28,9 @@ describe("Given LoginForm component", () => {
 
       renderWithProviders(<LoginForm />);
 
-      const renderedLabel = screen.getByLabelText(inputText);
+      const renderedImput = screen.getByLabelText(inputText);
 
-      expect(renderedLabel).toBeInTheDocument();
+      expect(renderedImput).toBeInTheDocument();
     });
 
     test("Then it should show an input with the label 'Password:'", () => {
@@ -36,9 +38,9 @@ describe("Given LoginForm component", () => {
 
       renderWithProviders(<LoginForm />);
 
-      const renderedLabel = screen.getByLabelText(inputText);
+      const renderedImput = screen.getByLabelText(inputText);
 
-      expect(renderedLabel).toBeInTheDocument();
+      expect(renderedImput).toBeInTheDocument();
     });
 
     test("Then it should show a button with the text `Log in`", () => {
@@ -51,6 +53,7 @@ describe("Given LoginForm component", () => {
       expect(renderedButton).toBeInTheDocument();
     });
   });
+
   describe("When its rendered and the button is clicked with the fields written", () => {
     test("Then it should be called the function send form", async () => {
       const inputUserNameText = "User name:";

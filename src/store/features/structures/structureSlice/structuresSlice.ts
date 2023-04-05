@@ -3,7 +3,7 @@ import { StructuresState } from "../../../../types";
 
 const structuresInitialState: StructuresState = {
   structures: [],
-  currentPage: "1",
+  currentPage: "0",
   totalPages: 0,
   totalStructures: 0,
 };

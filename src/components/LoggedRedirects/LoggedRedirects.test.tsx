@@ -1,20 +1,20 @@
 import { screen } from "@testing-library/react";
-import renderWithRoutersAndProviders, {
-  RouterAndState,
-} from "../../testUtils/renderWithRouterAndProviders";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
 import LoggedRedirects from "./LoggedRedirects";
+import { RouterAndState } from "../../types";
+import { stateToMock } from "../../mocks/mocks";
 
 describe("Given the component LoggedRedirects", () => {
-  describe("When it is rendered with a container with text `Hello world` and user that is not logged", () => {
+  describe("When it is rendered with a container with the text `Hello world`", () => {
     test("Then it should show the container with text `Hello world`", () => {
       const text = "Hello world";
       const containerWithText = <div>{text}</div>;
 
+      const preloadedState = stateToMock().mock();
+
       const routerAndState: RouterAndState = {
         ui: <LoggedRedirects children={containerWithText} />,
-        preloadedState: {
-          user: { isLogged: false, token: "" },
-        },
+        preloadedState,
       };
 
       renderWithRoutersAndProviders(routerAndState);

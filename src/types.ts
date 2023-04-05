@@ -1,3 +1,11 @@
+import { PreloadedState } from "@reduxjs/toolkit";
+import { RootState } from "./store/store";
+
+export interface RouterAndState {
+  ui?: React.ReactElement;
+  preloadedState?: PreloadedState<RootState>;
+}
+
 export interface UserState {
   token: string;
   isLogged: boolean;
