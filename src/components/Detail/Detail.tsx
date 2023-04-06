@@ -4,18 +4,10 @@ import { NavLink } from "react-router-dom";
 import useStructures from "../../hooks/useStructures/useStructures";
 import { useAppSelector } from "../../store/hooks";
 import DetailStyled from "./DetailStyled";
+import { StructureStructure } from "../../types";
 
 interface DetailProps {
-  structure: {
-    elevation: string;
-    name: string;
-    type: string;
-    location: string;
-    image: string;
-    id: string;
-    description: string;
-    creationTime: string;
-  };
+  structure: StructureStructure;
 }
 
 const Detail = ({

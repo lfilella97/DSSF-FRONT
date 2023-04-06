@@ -2,6 +2,7 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import renderWithProviders from "../../testUtils/renderWithProviders";
 import CreateForm from "./CreateForm";
+import { stateToMock } from "../../mocks/mocks";
 
 const mockUseStructure = jest.fn();
 
@@ -9,13 +10,15 @@ jest.mock("../../hooks/useStructures/useStructures", () => () => ({
   createStructure: mockUseStructure,
 }));
 
-describe("Given CreateForm component", () => {
+describe("Given the CreateForm component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a header with text 'Add new structure'", () => {
+      const headingText = "Add new structure";
+
       renderWithProviders(<CreateForm />);
 
       const renderedTitle = screen.getByRole("heading", {
-        name: "Add new structure",
+        name: headingText,
       });
 
       expect(renderedTitle).toBeInTheDocument();
@@ -98,21 +101,18 @@ describe("Given CreateForm component", () => {
     });
   });
 
-  describe("When its rendered and the button is clicked with the fields written", () => {
+  describe("When its rendered and the button is clicked with the fields fully written", () => {
     test("Then it should be called the function send form", async () => {
+      const mockState = stateToMock().logUser().mock();
+
       const inputText = "Location:";
       const inputElevation = "Elevation:";
       const inputDescription = "Description:";
       const inputName = "Name:";
       const inputImage = "Image:";
       const buttonText = "Create";
-      renderWithProviders(<CreateForm />, {
-        user: {
-          isLogged: true,
-          token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDc4ZWJjMjBiZGVjYjcxMzY0OTBlYSIsInVzZXJOYW1lIjoiYm9saWN1Ym8iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzkxNTYyMjl9.vdiD83fGCX2K2tYYQmsP42OZMDdsrzmY88j1qeHN3mE",
-        },
-      });
+
+      renderWithProviders(<CreateForm />, mockState);
 
       const renderedLabel = screen.getByLabelText(inputText);
       const renderedElevation = screen.getByLabelText(inputElevation);
@@ -131,6 +131,8 @@ describe("Given CreateForm component", () => {
         await userEvent.type(renderedName, "bolicubo");
         await userEvent.type(renderedElevation, "456");
         await userEvent.type(renderedDescription, "bernat");
+      });
+      await waitFor(async () => {
         await userEvent.click(renderedButton);
       });
 

@@ -46,7 +46,7 @@ const StructuresPage = (): JSX.Element => {
     <StructuresStyled>
       <h2 className="structures__title">Structures:</h2>
 
-      <Filter onChange={handleInputChange} type={filterAndLoad.type} />
+      <Filter onChange={handleInputChange} value={filterAndLoad.type} />
 
       {structures[0] && (
         <ul className="structures">

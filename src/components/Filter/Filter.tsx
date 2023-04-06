@@ -2,19 +2,19 @@ import FilterStyled from "./FilterStyled";
 
 interface FilterProps {
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  type: string;
+  value: string;
 }
 
 const Filter = ({
   onChange: handleInputChange,
-  type,
+  value,
 }: FilterProps): JSX.Element => {
   return (
     <FilterStyled
       onChange={handleInputChange}
       className="form__field"
       placeholder="Introduce selector"
-      value={type}
+      value={value}
       id="selector"
       name="type"
       required

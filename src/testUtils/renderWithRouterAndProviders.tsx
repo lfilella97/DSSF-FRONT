@@ -1,9 +1,9 @@
-import { PreloadedState } from "@reduxjs/toolkit";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import StructuresPage from "../pages/StructuresPage/StructuresPage";
 import router from "../router/router";
-import { RootState } from "../store/store";
+
 import renderWithProviders from "./renderWithProviders";
+import { RouterAndState } from "../types";
 
 const getComponentRouter = (Ui: JSX.Element) =>
   createBrowserRouter([
@@ -16,11 +16,6 @@ const getComponentRouter = (Ui: JSX.Element) =>
       element: <StructuresPage />,
     },
   ]);
-
-export interface RouterAndState {
-  ui?: React.ReactElement;
-  preloadedState?: PreloadedState<RootState>;
-}
 
 const renderWithRoutersAndProviders = ({
   ui,
