@@ -1,7 +1,11 @@
 import { PreloadedState } from "@reduxjs/toolkit";
-import { StructureStructure } from "../types";
-import { StructuresState, UiState, UserState } from "../types";
 import { RootState } from "../store/store";
+import {
+  StructuresState,
+  UiState,
+  UserState,
+  StructureStructure,
+} from "../types";
 
 interface StateToMock {
   structures: StructuresState;

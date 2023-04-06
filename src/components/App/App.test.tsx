@@ -1,8 +1,8 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { linksAndButtonsText, stateToMock } from "./mocks/mocks";
-import renderWithRoutersAndProviders from "./testUtils/renderWithRouterAndProviders";
-import { RouterAndState } from "./types";
+import { linksAndButtonsText, stateToMock } from "../../mocks/mocks";
+import renderWithRoutersAndProviders from "../../testUtils/renderWithRouterAndProviders";
+import { RouterAndState } from "../../types";
 
 const { add, home, login, logout, map } = linksAndButtonsText;
 
