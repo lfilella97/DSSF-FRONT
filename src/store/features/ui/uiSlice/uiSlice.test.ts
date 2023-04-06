@@ -1,4 +1,5 @@
-import { ModalStructure, UiState } from "../../../../types";
+import { stateToMock } from "../../../../mocks/mocks";
+import { UiState } from "../../../../types";
 import {
   turnOffLoaderActionCreator,
   turnOffModalActionCreator,
@@ -10,14 +11,9 @@ import {
 describe("Given the ui reducer", () => {
   describe("When it receives the turn offLoader action", () => {
     test("Then it should turn of the loader", () => {
-      const uiState: UiState = {
-        isLoading: true,
-        modals: { message: "", error: false },
-      };
-      const expectedResult: UiState = {
-        isLoading: false,
-        modals: { message: "", error: false },
-      };
+      const uiState: UiState = stateToMock().setLoadingOn().mock().ui!;
+
+      const expectedResult: UiState = stateToMock().mock().ui!;
 
       const turnOffLoaderAction = turnOffLoaderActionCreator();
 
@@ -29,14 +25,9 @@ describe("Given the ui reducer", () => {
 
   describe("When it receives the turn onLoader action", () => {
     test("Then it should turn of the loader", () => {
-      const uiState: UiState = {
-        isLoading: false,
-        modals: { message: "", error: false },
-      };
-      const expectedResult: UiState = {
-        isLoading: true,
-        modals: { message: "", error: false },
-      };
+      const uiState: UiState = stateToMock().mock().ui!;
+
+      const expectedResult: UiState = stateToMock().setLoadingOn().mock().ui!;
 
       const turnOnLoaderAction = turnOnLoaderActionCreator();
 
@@ -48,18 +39,14 @@ describe("Given the ui reducer", () => {
 
   describe("When it receives the turn onModal action with a message `Error`", () => {
     test("Then it should turn on the Modal with message 'Error", () => {
-      const uiState: UiState = {
-        isLoading: false,
-        modals: { message: "", error: false },
-      };
-      const modal: ModalStructure = { message: "error", error: true };
+      const uiState: UiState = stateToMock().mock().ui!;
+      const { modals } = stateToMock().turnErrorModalOn(`Error`).mock().ui!;
 
-      const expectedResult: UiState = {
-        isLoading: false,
-        modals: { message: "error", error: true },
-      };
+      const expectedResult: UiState = stateToMock()
+        .turnErrorModalOn(`Error`)
+        .mock().ui!;
 
-      const turnOnModalAction = turnOnModalActionCreator(modal);
+      const turnOnModalAction = turnOnModalActionCreator(modals);
 
       const turnedOnModal = uiReducer(uiState, turnOnModalAction);
 
@@ -69,15 +56,10 @@ describe("Given the ui reducer", () => {
 
   describe("When it receives the turn offModal action", () => {
     test("Then it should turn off the Modal", () => {
-      const uiState: UiState = {
-        isLoading: false,
-        modals: { message: "error", error: true },
-      };
+      const uiState: UiState = stateToMock().turnErrorModalOn(`Error`).mock()
+        .ui!;
 
-      const expectedResult: UiState = {
-        isLoading: false,
-        modals: { message: "", error: false },
-      };
+      const expectedResult: UiState = stateToMock().mock().ui!;
 
       const turnOffModalAction = turnOffModalActionCreator();
 
