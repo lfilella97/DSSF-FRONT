@@ -3,6 +3,7 @@ import { lazy } from "react";
 import App from "../components/App/App";
 import StructuresPage from "../pages/StructuresPage/StructuresPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
+import MapPage from "../pages/MapPage/MapPage";
 
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
 
@@ -36,12 +37,8 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: "/*",
-        element: <NotFoundPage />,
-      },
-      {
-        path: "/structure/:id",
-        element: <DetailPage></DetailPage>,
+        path: "/map",
+        element: <MapPage />,
       },
       {
         path: "/add-new-structure",
@@ -50,6 +47,14 @@ const routes: RouteObject[] = [
             <CreateStructurePage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/structure/:id",
+        element: <DetailPage></DetailPage>,
+      },
+      {
+        path: "/*",
+        element: <NotFoundPage />,
       },
     ],
   },

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
 import Filter from "../../components/Filter/Filter";
-import Structure from "../../components/Structure/Structure";
 import useStructures from "../../hooks/useStructures/useStructures";
 import { turnOnLoaderActionCreator } from "../../store/features/ui/uiSlice/uiSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import StructuresStyled from "./StructuresPageStyled";
+import Map from "../../components/Map/Map";
+import StructuresStyled from "../StructuresPage/StructuresPageStyled";
 
 const StructuresPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -48,15 +48,7 @@ const StructuresPage = (): JSX.Element => {
 
       <Filter onChange={handleInputChange} value={filterAndLoad.type} />
 
-      {structures[0] && (
-        <ul className="structures">
-          {structures.map((structure) => (
-            <li key={structure.id}>
-              <Structure structure={structure} />
-            </li>
-          ))}
-        </ul>
-      )}
+      {structures[0] && <Map structures={structures} />}
       {!isLoading && !structures[0] && (
         <span className="structures__notFound">No structures found...</span>
       )}
