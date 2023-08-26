@@ -128,11 +128,13 @@ describe("Given the CreateForm component", () => {
       await waitFor(async () => {
         await userEvent.type(renderedLabel, "bolicubo");
         await userEvent.upload(renderedImage, file);
-        await userEvent.type(renderedName, "bolicubo");
-        await userEvent.type(renderedElevation, "456");
-        await userEvent.type(renderedDescription, "bernat");
       });
       await waitFor(async () => {
+        await userEvent.type(renderedName, "bolicubo");
+        await userEvent.type(renderedElevation, "456");
+      });
+      await waitFor(async () => {
+        await userEvent.type(renderedDescription, "bernat");
         await userEvent.click(renderedButton);
       });
 

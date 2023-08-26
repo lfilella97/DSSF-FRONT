@@ -60,7 +60,7 @@ export interface StructuresApi {
   structures: Structures;
 }
 
-export interface StructureApi {
+export interface StructureState {
   structure: StructureStructure;
 }
 
@@ -81,7 +81,7 @@ export type ApiStructures =
   | ErrorResponse
   | DeletedResponse
   | CreatedResponse
-  | StructureApi
+  | StructureState
   | StructuresState;
 
 export interface StructureFormData

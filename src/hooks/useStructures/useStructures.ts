@@ -5,7 +5,7 @@ import {
   deletedStructureActionCreator,
   loadMoreStructuresActionCreator,
   loadStructuresActionCreator,
-} from "../../store/features/structures/structureSlice/structuresSlice";
+} from "../../store/features/structures/structuresSlice/structuresSlice";
 import {
   turnOffLoaderActionCreator,
   turnOnLoaderActionCreator,
@@ -16,14 +16,16 @@ import {
   CreatedResponse,
   DeletedResponse,
   ErrorResponse,
+  StructureState,
   StructuresState,
 } from "../../types";
+import { loadStructureActionCreator } from "../../store/features/structures/structureSlice/structureSlice";
 
 interface UseStrucutres {
   getStructures: (params: URLSearchParams, more?: boolean) => Promise<void>;
-  deleteStructure: (id: string) => void;
+  deleteStructure: (id: string) => Promise<void>;
   createStructure: (structure: FormData) => Promise<void>;
-  getStructure: (id: string) => void;
+  getStructure: (id: string) => Promise<void>;
 }
 
 const useStructures = (): UseStrucutres => {
@@ -158,20 +160,20 @@ const useStructures = (): UseStrucutres => {
     async (id: string) => {
       const structuresPath = "/structures";
       dispatch(turnOnLoaderActionCreator());
+
       try {
         const response: Response = await fetch(
           `${process.env.REACT_APP_URL_API!}${structuresPath}/${id}`
         );
-
         const apiStructures: ApiStructures = await response.json();
 
         if (!response.ok) {
           throw new Error((apiStructures as ErrorResponse).error);
         }
-
-        dispatch(loadStructuresActionCreator(apiStructures as StructuresState));
+        dispatch(loadStructureActionCreator(apiStructures as StructureState));
         dispatch(turnOffLoaderActionCreator());
       } catch (error) {
+        navigateTo("/home");
         dispatch(
           turnOnModalActionCreator({
             message: "Ups, something went wrong",
@@ -181,7 +183,7 @@ const useStructures = (): UseStrucutres => {
         dispatch(turnOffLoaderActionCreator());
       }
     },
-    [dispatch]
+    [dispatch, navigateTo]
   );
 
   return {

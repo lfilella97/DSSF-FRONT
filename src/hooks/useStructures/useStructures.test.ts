@@ -12,7 +12,7 @@ import {
   deletedStructureActionCreator,
   loadMoreStructuresActionCreator,
   loadStructuresActionCreator,
-} from "../../store/features/structures/structureSlice/structuresSlice";
+} from "../../store/features/structures/structuresSlice/structuresSlice";
 import { store } from "../../store/store";
 import { Structures } from "../../types";
 import useStructures from "./useStructures";
