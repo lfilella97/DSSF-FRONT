@@ -74,9 +74,11 @@ describe("Given the LoginForm component", () => {
       await waitFor(async () => {
         await userEvent.type(renderedUserNameInput, "bolicubo");
         await userEvent.type(renderedPasswordInput, "bernat");
-        await userEvent.click(renderedButton);
       });
 
+      await waitFor(async () => {
+        await userEvent.click(renderedButton);
+      });
       expect(mockLoginUser).toBeCalledWith(expectedCall);
     });
   });

@@ -5,17 +5,20 @@ import {
   UiState,
   UserState,
   StructureStructure,
+  StructureState,
 } from "../types";
 
 interface StateToMock {
   structures: StructuresState;
   ui: UiState;
   user: UserState;
+  structure: StructureState;
   mock: () => PreloadedState<RootState>;
   logUser: () => StateToMock;
   setLoadingOn: () => StateToMock;
   turnModalOn: (message: string) => StateToMock;
   turnErrorModalOn: (message: string) => StateToMock;
+  setStructure: () => StateToMock;
   setStructures: (total: number, firstStructureId?: string) => StateToMock;
 }
 
@@ -23,12 +26,14 @@ export const stateToMock = (): StateToMock => ({
   structures: mockStructuresState(),
   ui: { ...mockUiState },
   user: { ...mockUserState },
+  structure: mockStructureState(),
 
   mock() {
     return {
       structures: this.structures,
       ui: { ...this.ui },
       user: { ...this.user },
+      structure: { ...this.structure },
     };
   },
 
@@ -49,6 +54,11 @@ export const stateToMock = (): StateToMock => ({
 
   turnErrorModalOn(message: string) {
     this.ui.modals = { message, error: true };
+    return this;
+  },
+
+  setStructure() {
+    this.structure.structure = structures[0];
     return this;
   },
 
@@ -78,6 +88,10 @@ const mockStructuresState = (): StructuresState => ({
   totalStructures: 0,
 });
 
+const mockStructureState = (): StructureState => ({
+  structure: emptyStructure,
+});
+
 const mockUiState: UiState = {
   isLoading: false,
   modals: { error: false, message: "" },
@@ -87,6 +101,20 @@ const loggedUser: UserState = {
   isLogged: true,
   token:
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDc4ZWJjMjBiZGVjYjcxMzY0OTBlYSIsInVzZXJOYW1lIjoiYm9saWN1Ym8iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzkxNTYyMjl9.vdiD83fGCX2K2tYYQmsP42OZMDdsrzmY88j1qeHN3mE",
+};
+
+export const emptyStructure: StructureStructure = {
+  coordenateX: "",
+  coordenateY: "",
+  creationTime: "",
+  description: "",
+  elevation: "",
+  id: "",
+  image: "",
+  location: "",
+  name: "",
+  owner: "",
+  type: "",
 };
 
 const structures: StructureStructure[] = [
