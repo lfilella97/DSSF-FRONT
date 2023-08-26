@@ -172,15 +172,15 @@ const useStructures = (): UseStrucutres => {
         }
         dispatch(loadStructureActionCreator(apiStructures as StructureState));
         dispatch(turnOffLoaderActionCreator());
-      } catch (error) {
-        navigateTo("/home");
+      } catch (error: unknown) {
         dispatch(
           turnOnModalActionCreator({
-            message: "Ups, something went wrong",
+            message: (error as Error).message,
             error: true,
           })
         );
         dispatch(turnOffLoaderActionCreator());
+        navigateTo("/home");
       }
     },
     [dispatch, navigateTo]
